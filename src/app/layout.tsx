@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 
 import { TranslationProvider } from "@/context/translation-context";
 import { CartProvider } from "@/context/cart-context";
+import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
@@ -33,6 +34,7 @@ export default function RootLayout({
         <TranslationProvider>
           <CartProvider>
             {children}
+            <Toaster position="top-center" richColors />
           </CartProvider>
         </TranslationProvider>
       </body>

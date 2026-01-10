@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import { Loader2, Sparkles } from "lucide-react";
 import { createCheckoutSession } from "@/app/actions/stripe";
 import { Button } from "@/components/ui/button";
@@ -23,12 +24,26 @@ const PurchaseRitualButton = ({ className, text, disabled }: PurchaseRitualButto
     const displayDescription = text || t.common.begin_ritual;
 
     const handlePurchase = async () => {
+        if (cart.length === 0) {
+            toast.error(t.cart.empty || "Cart is empty");
+            return;
+        }
+
         setIsLoading(true);
+        console.log("[Checkout] Initiating payment for items:", cart.length);
+
         try {
             await createCheckoutSession(cart);
-        } catch (error) {
+            // If redirect happens, the page will change
+        } catch (error: any) {
             console.error("Payment initiation failed:", error);
-            setIsLoading(false);
+            const errorMessage = error.message || "Payment service unavailable";
+
+            // Only toast if it's not a redirect (which Next.js handles)
+            if (!error.message?.includes('NEXT_REDIRECT')) {
+                toast.error(errorMessage);
+                setIsLoading(false);
+            }
         }
     };
 

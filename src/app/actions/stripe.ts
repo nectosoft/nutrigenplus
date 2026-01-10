@@ -9,6 +9,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 import { CartItem } from "@/context/cart-context";
 
 export async function createCheckoutSession(items: CartItem[]) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+        console.error("[Stripe] STRIPE_SECRET_KEY is missing from environment variables");
+        throw new Error("Configuration Error: Stripe Secret Key is missing on the server.");
+    }
+
     try {
         const headersList = await headers();
         const origin = headersList.get("origin") ||
