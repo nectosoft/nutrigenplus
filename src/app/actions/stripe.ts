@@ -8,15 +8,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 import { CartItem } from "@/context/cart-context";
 
-export async function createCheckoutSession(items: CartItem[]) {
+export async function createCheckoutSession(items: CartItem[]): Promise<{ url?: string; error?: string }> {
     // 1. Validate environment
     const secretKey = process.env.STRIPE_SECRET_KEY;
     if (!secretKey) {
         console.error("[Stripe] CRITICAL: STRIPE_SECRET_KEY is missing");
-        throw new Error("Server Configuration Error: Stripe Secret Key is missing.");
+        return { error: "Server Configuration Error: Stripe Secret Key is missing." };
     }
 
-    // Initialize Stripe inside the function or use the outer one
+    // Initialize Stripe
     const stripe = new Stripe(secretKey);
 
     let redirectUrl: string | null = null;
@@ -72,23 +72,16 @@ export async function createCheckoutSession(items: CartItem[]) {
         });
 
         console.log("[Stripe] Session created:", session.id);
-        redirectUrl = session.url;
+        return { url: session.url || undefined };
 
     } catch (error: any) {
         console.error("[Stripe Action Error Details]:", error);
 
         // Handle Stripe specific errors
         if (error.type === 'StripeAuthenticationError') {
-            throw new Error("Invalid Stripe API Key. Please check your Hostinger environment variables.");
+            return { error: "Invalid Stripe API Key. Please check your environment variables." };
         }
 
-        throw new Error(error.message || "An unexpected error occurred during checkout setup.");
-    }
-
-    // 4. Perform Redirect (Must be outside try-catch to work correctly in Next.js)
-    if (redirectUrl) {
-        redirect(redirectUrl);
-    } else {
-        throw new Error("Stripe did not return a valid checkout URL.");
+        return { error: error.message || "An unexpected error occurred during checkout setup." };
     }
 }

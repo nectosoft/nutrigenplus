@@ -33,17 +33,25 @@ const PurchaseRitualButton = ({ className, text, disabled }: PurchaseRitualButto
         console.log("[Checkout] Initiating payment for items:", cart.length);
 
         try {
-            await createCheckoutSession(cart);
-            // If redirect happens, the page will change
+            const result = await createCheckoutSession(cart);
+
+            if (result.error) {
+                toast.error(result.error);
+                setIsLoading(false);
+                return;
+            }
+
+            if (result.url) {
+                window.location.assign(result.url);
+            } else {
+                toast.error("Failed to retrieve checkout URL");
+                setIsLoading(false);
+            }
         } catch (error: any) {
             console.error("Payment initiation failed:", error);
             const errorMessage = error.message || "Payment service unavailable";
-
-            // Only toast if it's not a redirect (which Next.js handles)
-            if (!error.message?.includes('NEXT_REDIRECT')) {
-                toast.error(errorMessage);
-                setIsLoading(false);
-            }
+            toast.error(errorMessage);
+            setIsLoading(false);
         }
     };
 
