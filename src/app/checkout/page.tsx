@@ -14,6 +14,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useSearchParams } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 const CheckoutContent = () => {
     const {
         cart,
