@@ -2,13 +2,19 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { headers } from "next/headers";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-    apiVersion: "2025-12-15.clover" as any,
-});
-
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request) {
+    const secretKey = process.env.STRIPE_SECRET_KEY;
+    if (!secretKey) {
+        return NextResponse.json({ error: "Configuration missing" }, { status: 500 });
+    }
+
+    const stripe = new Stripe(secretKey, {
+        apiVersion: "2025-12-15.clover" as any,
+    });
     const body = await req.text();
     const headersList = await headers();
     const sig = headersList.get("stripe-signature")!;

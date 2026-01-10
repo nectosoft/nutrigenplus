@@ -4,7 +4,6 @@ import Stripe from "stripe";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 import { CartItem } from "@/context/cart-context";
 
