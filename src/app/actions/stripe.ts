@@ -4,22 +4,22 @@ import Stripe from "stripe";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-    apiVersion: "2024-12-18.preview" as any, // Using a more standard preview version or removing it is safer
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 import { CartItem } from "@/context/cart-context";
 
 export async function createCheckoutSession(items: CartItem[]) {
     try {
         const headersList = await headers();
-        const origin = headersList.get("origin");
+        const origin = headersList.get("origin") ||
+            (headersList.get("host") ? `https://${headersList.get("host")}` : null);
 
         if (!origin) {
+            console.error("[Stripe] Missing origin/host header. Headers:", JSON.stringify(Object.fromEntries(headersList.entries())));
             throw new Error("Missing origin header");
         }
 
-        console.log("[Stripe] Creating session for items:", items.length);
+        console.log("[Stripe] Creating session. Items:", items.length, "Origin:", origin);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
@@ -61,9 +61,9 @@ export async function createCheckoutSession(items: CartItem[]) {
             throw new Error("Failed to generate checkout URL");
         }
     } catch (error: any) {
-        console.error("[Stripe Error]:", error.message);
-        // We re-throw for redirect to work, but other errors will be caught by the client
-        if (error.digest?.includes('NEXT_REDIRECT')) {
+        console.error("[Stripe Action Error]:", error);
+        // We re-throw for redirect to work
+        if (error.digest?.includes('NEXT_REDIRECT') || error.message === 'NEXT_REDIRECT') {
             throw error;
         }
         throw new Error(error.message || "An unexpected error occurred during checkout");
