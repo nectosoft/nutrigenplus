@@ -36,6 +36,7 @@ const RitualSection = () => {
                             <motion.span
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
+                                viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                                 className="text-gold-mid font-medium tracking-[0.3em] uppercase text-xs"
                             >
                                 {t.ritual.subtitle}
@@ -43,6 +44,7 @@ const RitualSection = () => {
                             <motion.h2
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                                 className="text-4xl md:text-5xl font-serif text-white italic"
                             >
                                 {t.ritual.title}
@@ -59,6 +61,7 @@ const RitualSection = () => {
                                 key={index}
                                 initial={{ opacity: 0, x: 30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                                 transition={{ delay: index * 0.2 }}
                                 className="flex gap-8 group"
                             >
@@ -93,6 +96,7 @@ const RitualSection = () => {
                                 key={idx}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                                 transition={{ delay: idx * 0.1 }}
                                 className="bg-white/5 backdrop-blur-sm p-10 rounded-[2.5rem] border border-white/5 hover:border-gold-mid/30 hover:bg-white/[0.08] transition-all duration-700 group"
                             >

@@ -14,6 +14,26 @@ const TestimonialsSection = () => {
         t.testimonials.quote3,
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: "easeOut" as any }
+        }
+    };
+
     return (
         <section id="testimonials" className="py-24 bg-alabaster relative overflow-hidden">
             <div className="container mx-auto px-6">
@@ -21,26 +41,32 @@ const TestimonialsSection = () => {
                     <motion.span
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        className="text-gold-end font-medium tracking-[0.3em] uppercase text-xs"
+                        viewport={{ once: true, amount: 0.5 }}
+                        className="text-gold-end font-bold tracking-[0.3em] uppercase text-[10px]"
                     >
                         {t.testimonials.subtitle}
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5 }}
                         className="text-4xl md:text-5xl font-serif text-charcoal"
                     >
                         {t.testimonials.title}
                     </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2, margin: "-100px" }}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-12"
+                >
                     {voices.map((voice, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.2 }}
+                            variants={itemVariants}
                             className="relative p-10 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 border border-gold-start/5"
                         >
                             <Quote className="absolute top-6 left-6 w-10 h-10 text-gold-mid/10" />
@@ -59,7 +85,7 @@ const TestimonialsSection = () => {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

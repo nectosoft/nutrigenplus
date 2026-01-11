@@ -4,7 +4,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, CheckCircle2, CreditCard, ShieldCheck, Truck } from "lucide-react";
+import { ArrowLeft, CheckCircle2, CreditCard, ShieldCheck, Truck, Sparkles } from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import { useTranslation } from "@/context/translation-context";
 import { Button } from "@/components/ui/button";
@@ -85,75 +85,89 @@ const CheckoutContent = () => {
                 </Link>
 
                 <div className="flex flex-col lg:flex-row gap-20">
-                    {/* Checkout Form */}
-                    <div className="lg:w-3/5 space-y-12">
-                        <div className="space-y-2">
-                            <h1 className="text-4xl md:text-5xl font-serif text-charcoal">{t.checkout.title}</h1>
-                            <div className="h-1 w-20 bg-gold-gradient" />
-                        </div>
+                    {/* Checkout Journey Visualization */}
+                    <div className="lg:w-3/5 space-y-16">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="space-y-6"
+                        >
+                            <h1 className="text-5xl md:text-6xl font-serif text-charcoal tracking-tight">
+                                {t.checkout.title}
+                            </h1>
+                            <div className="h-[0.5px] w-40 bg-gold-gradient" />
+                            <p className="text-xl text-charcoal/40 font-serif italic max-w-xl leading-relaxed">
+                                Your commitment to biological integrity begins here. A new chapter of structural harmony and timeless radiance awaits.
+                            </p>
+                        </motion.div>
 
-                        <div className="space-y-10">
-                            <div className="space-y-6">
-                                <h3 className="text-xl font-serif text-charcoal flex items-center gap-3">
-                                    <Truck className="w-5 h-5 text-gold-end" />
-                                    {t.checkout.shipping_address}
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold ml-1">{t.checkout.full_name}</label>
-                                        <Input required placeholder={t.checkout.placeholder_name} className="h-12 border-alabaster bg-alabaster/20 focus:border-gold-start transition-all" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold ml-1">{t.checkout.email}</label>
-                                        <Input required type="email" placeholder={t.checkout.placeholder_email} className="h-12 border-alabaster bg-alabaster/20 focus:border-gold-start transition-all" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold ml-1">{t.checkout.phone}</label>
-                                        <Input required placeholder={t.checkout.placeholder_phone} className="h-12 border-alabaster bg-alabaster/20 focus:border-gold-start transition-all" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold ml-1">{t.checkout.country}</label>
-                                        <Input required placeholder={t.checkout.placeholder_country} className="h-12 border-alabaster bg-alabaster/20 focus:border-gold-start transition-all" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold ml-1">{t.checkout.city}</label>
-                                        <Input required placeholder={t.checkout.placeholder_city} className="h-12 border-alabaster bg-alabaster/20 focus:border-gold-start transition-all" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold ml-1">{t.checkout.postal_code}</label>
-                                        <Input required placeholder={t.checkout.placeholder_postal} className="h-12 border-alabaster bg-alabaster/20 focus:border-gold-start transition-all" />
-                                    </div>
-                                    <div className="md:col-span-2 space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold ml-1">{t.checkout.address}</label>
-                                        <Input required placeholder={t.checkout.placeholder_address} className="h-12 border-alabaster bg-alabaster/20 focus:border-gold-start transition-all" />
-                                    </div>
+                        <div className="relative group">
+                            {/* Decorative Background for the message */}
+                            <div className="absolute -inset-1 bg-gradient-to-r from-gold-start/20 via-gold-end/10 to-transparent rounded-[3rem] blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000" />
+
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="relative bg-white/40 backdrop-blur-3xl border border-gold-start/10 p-12 md:p-16 rounded-[3rem] overflow-hidden"
+                            >
+                                <div className="absolute top-0 right-0 p-8">
+                                    <Sparkles className="w-12 h-12 text-gold-end/10" />
                                 </div>
-                            </div>
 
-                            <div className="space-y-6">
-                                <h3 className="text-xl font-serif text-charcoal flex items-center gap-3">
-                                    <CreditCard className="w-5 h-5 text-gold-end" />
-                                    {t.checkout.payment_method}
-                                </h3>
-                                <div className="p-6 bg-alabaster/40 rounded-3xl border border-gold-start/10 flex items-center justify-between group cursor-default">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-8 bg-charcoal rounded flex items-center justify-center">
-                                            <div className="w-6 h-4 border border-white/20 rounded-sm" />
+                                <div className="space-y-10 relative z-10">
+                                    <div className="space-y-4">
+                                        <h3 className="text-gold-end font-bold tracking-[0.4em] text-[10px] uppercase">
+                                            The Longevity Journey
+                                        </h3>
+                                        <h2 className="text-3xl md:text-4xl font-serif text-charcoal leading-tight">
+                                            Prepare your ritual.
+                                        </h2>
+                                    </div>
+
+                                    <div className="space-y-6 text-charcoal/60 text-lg leading-relaxed font-light italic border-l-[0.5px] border-gold-start/30 pl-8">
+                                        <p>
+                                            In the next step, you will be directed to our secure molecular treasury (Stripe) to finalize your acquisition.
+                                        </p>
+                                        <p>
+                                            There, you can provide your shipping details and preferred payment method in one seamless, encrypted environment.
+                                        </p>
+                                    </div>
+
+                                    <div className="pt-8">
+                                        <PurchaseRitualButton
+                                            className="w-full md:w-auto min-w-[300px]"
+                                            text={t.checkout.place_order}
+                                            disabled={cart.length === 0}
+                                        />
+                                    </div>
+
+                                    <div className="flex items-center gap-8 pt-8 opacity-40">
+                                        <div className="flex items-center gap-2">
+                                            <ShieldCheck className="w-4 h-4" />
+                                            <span className="text-[10px] uppercase tracking-widest font-bold">Encrypted</span>
                                         </div>
-                                        <span className="text-sm font-medium text-charcoal/60 italic font-serif">{t.checkout.payment_stripe}</span>
-                                    </div>
-                                    <div className="w-5 h-5 rounded-full border-2 border-gold-end flex items-center justify-center p-1">
-                                        <div className="w-full h-full bg-gold-gradient rounded-full" />
+                                        <div className="flex items-center gap-2">
+                                            <Truck className="w-4 h-4" />
+                                            <span className="text-[10px] uppercase tracking-widest font-bold">Complimentary Shipping</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <PurchaseRitualButton
-                                className="w-full"
-                                text={t.checkout.place_order}
-                                disabled={cart.length === 0}
-                            />
+                            </motion.div>
                         </div>
+
+                        {/* Subtle floating detail */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.4 }}
+                            transition={{ delay: 0.8 }}
+                            className="flex items-center gap-4 text-charcoal/30 justify-center lg:justify-start"
+                        >
+                            <div className="h-[1px] w-12 bg-charcoal/10" />
+                            <span className="text-[9px] uppercase tracking-[0.5em] font-medium italic">
+                                Crafted with precision in Bulgaria
+                            </span>
+                        </motion.div>
                     </div>
 
                     {/* Right Summary */}

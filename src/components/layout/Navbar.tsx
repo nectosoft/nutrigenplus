@@ -115,7 +115,7 @@ const Navbar = () => {
                             }
                         }}
                     >
-                        <div className="relative h-10 w-32 md:h-12 md:w-40 transition-transform group-hover:scale-105">
+                        <div className="relative h-8 w-28 xs:h-10 xs:w-32 md:h-12 md:w-40 transition-transform group-hover:scale-105">
                             <Image
                                 src="/logo.png"
                                 alt="NutriGen+ Logo"
@@ -188,21 +188,21 @@ const Navbar = () => {
                     </div>
 
                     {/* Action Items */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 sm:gap-4">
                         <LanguageSwitcher />
 
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="relative hover:bg-gold-start/10 transition-colors group"
+                            className="relative hover:bg-gold-start/10 transition-colors group w-9 h-9 sm:w-10 sm:h-10"
                             onClick={() => setCartOpen(true)}
                         >
-                            <ShoppingCart className="w-5 h-5 text-charcoal group-hover:text-[#DE9D9D]" />
+                            <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-charcoal group-hover:text-[#DE9D9D]" />
                             {cartCount > 0 && (
                                 <motion.span
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
-                                    className="absolute -top-1 -right-1 bg-[#DE9D9D] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+                                    className="absolute -top-1 -right-1 bg-[#DE9D9D] text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold"
                                 >
                                     {cartCount}
                                 </motion.span>
@@ -210,10 +210,10 @@ const Navbar = () => {
                         </Button>
 
                         <button
-                            className="lg:hidden text-charcoal p-1"
+                            className="lg:hidden text-charcoal p-1 hover:bg-gold-start/10 rounded-lg transition-colors"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         >
-                            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
                         </button>
                     </div>
                 </div>
@@ -232,9 +232,9 @@ const Navbar = () => {
                             <div className="absolute bottom-1/4 -left-20 w-64 h-64 bg-[#DE9D9D]/10 blur-[100px] rounded-full pointer-events-none" />
 
                             {/* Mobile Header */}
-                            <div className="flex items-center justify-between px-6 py-5 border-b border-alabaster/50 relative z-10">
+                            <div className="flex items-center justify-between px-6 py-4 border-b border-alabaster/50 relative z-10">
                                 <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <div className="relative h-10 w-32">
+                                    <div className="relative h-8 w-28">
                                         <Image src="/logo.png" alt="Logo" fill className="object-contain" />
                                     </div>
                                 </Link>
@@ -242,13 +242,13 @@ const Navbar = () => {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="p-2 hover:bg-gold-start/10 rounded-full transition-colors"
                                 >
-                                    <X size={24} className="text-charcoal" />
+                                    <X size={20} className="text-charcoal" />
                                 </button>
                             </div>
 
-                            <div className="flex-1 overflow-y-auto px-6 py-12 flex flex-col relative z-10">
+                            <div className="flex-1 overflow-y-auto px-6 py-10 flex flex-col relative z-10">
                                 {/* Navigation Links */}
-                                <div className="space-y-10 mb-16">
+                                <div className="space-y-8 mb-12">
                                     {navLinks.map((link, idx) => (
                                         <motion.div
                                             key={link.name}
@@ -263,9 +263,9 @@ const Navbar = () => {
                                             <a
                                                 href={link.href}
                                                 onClick={(e) => scrollToSection(e, link.href)}
-                                                className={`text-4xl font-serif block transition-all ${activeSection === link.id
-                                                    ? "text-gold-end translate-x-4"
-                                                    : "text-charcoal hover:text-gold-end hover:translate-x-2"
+                                                className={`text-2xl font-serif block transition-all ${activeSection === link.id
+                                                    ? "text-gold-end translate-x-3"
+                                                    : "text-charcoal hover:text-gold-end hover:translate-x-1"
                                                     }`}
                                             >
                                                 {link.name}
@@ -275,23 +275,23 @@ const Navbar = () => {
                                                 <motion.div
                                                     initial={{ opacity: 0, height: 0 }}
                                                     animate={{ opacity: 1, height: "auto" }}
-                                                    className="flex flex-col gap-6 pl-4 mt-6 border-l-2 border-gold-start/20"
+                                                    className="flex flex-col gap-4 pl-4 mt-4 border-l-2 border-gold-start/20"
                                                 >
                                                     <Link
                                                         href="/products/bioactive-collagen"
                                                         onClick={() => setIsMobileMenuOpen(false)}
                                                         className="flex flex-col gap-1 active:opacity-70"
                                                     >
-                                                        <span className="text-lg font-serif text-charcoal">{t.products.items.bioactive.name}</span>
-                                                        <span className="text-[10px] text-charcoal/40 uppercase tracking-widest font-bold">{t.products.items.bioactive.info}</span>
+                                                        <span className="text-base font-serif text-charcoal">{t.products.items.bioactive.name}</span>
+                                                        <span className="text-[9px] text-charcoal/40 uppercase tracking-widest font-bold">{t.products.items.bioactive.info}</span>
                                                     </Link>
                                                     <Link
                                                         href="/products/fish-collagen"
                                                         onClick={() => setIsMobileMenuOpen(false)}
                                                         className="flex flex-col gap-1 active:opacity-70"
                                                     >
-                                                        <span className="text-lg font-serif text-charcoal">{t.products.items.fish.name}</span>
-                                                        <span className="text-[10px] text-charcoal/40 uppercase tracking-widest font-bold">{t.products.items.fish.info}</span>
+                                                        <span className="text-base font-serif text-charcoal">{t.products.items.fish.name}</span>
+                                                        <span className="text-[9px] text-charcoal/40 uppercase tracking-widest font-bold">{t.products.items.fish.info}</span>
                                                     </Link>
                                                 </motion.div>
                                             )}
@@ -303,43 +303,43 @@ const Navbar = () => {
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.5 }}
-                                    className="mt-auto space-y-10"
+                                    transition={{ delay: 0.4 }}
+                                    className="mt-auto space-y-8"
                                 >
                                     {/* Action Button */}
                                     <Button
                                         asChild
-                                        className="w-full h-14 bg-charcoal hover:bg-charcoal/90 text-white font-bold uppercase tracking-[0.2em] text-xs rounded-xl shadow-xl flex items-center justify-between px-6 group"
+                                        className="w-full h-12 bg-charcoal hover:bg-charcoal/90 text-white font-bold uppercase tracking-[0.2em] text-[10px] rounded-xl shadow-xl flex items-center justify-between px-6 group"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         <a href="#contact" onClick={(e: any) => scrollToSection(e, "#contact")}>
                                             {t.nav.contact}
-                                            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                         </a>
                                     </Button>
 
                                     {/* Contact & Socials */}
-                                    <div className="grid grid-cols-2 gap-8 items-end">
-                                        <div className="space-y-4">
-                                            <p className="text-[10px] text-charcoal/30 uppercase tracking-[0.3em] font-bold">{t.contact.priority_support}</p>
+                                    <div className="grid grid-cols-2 gap-6 items-end">
+                                        <div className="space-y-3">
+                                            <p className="text-[9px] text-charcoal/30 uppercase tracking-[0.3em] font-bold">{t.contact.priority_support}</p>
                                             <div className="space-y-2">
-                                                <a href={`mailto:${t.contact.office_email}`} className="flex items-center gap-3 text-sm text-charcoal/60 hover:text-gold-end transition-colors">
-                                                    <Mail size={16} />
+                                                <a href={`mailto:${t.contact.office_email}`} className="flex items-center gap-2 text-xs text-charcoal/60 hover:text-gold-end transition-colors">
+                                                    <Mail size={14} />
                                                     <span className="truncate">{t.contact.office_email}</span>
                                                 </a>
-                                                <a href={`tel:${t.contact.phone}`} className="flex items-center gap-3 text-sm text-charcoal/60 hover:text-gold-end transition-colors">
-                                                    <Phone size={16} />
+                                                <a href={`tel:${t.contact.phone}`} className="flex items-center gap-2 text-xs text-charcoal/60 hover:text-gold-end transition-colors">
+                                                    <Phone size={14} />
                                                     <span>{t.contact.phone}</span>
                                                 </a>
                                             </div>
                                         </div>
 
-                                        <div className="flex justify-end gap-4">
-                                            <a href="#" className="w-12 h-12 bg-alabaster rounded-full flex items-center justify-center text-charcoal hover:bg-gold-gradient hover:text-white transition-all shadow-sm">
-                                                <Instagram size={20} />
+                                        <div className="flex justify-end gap-3">
+                                            <a href="#" className="w-10 h-10 bg-alabaster rounded-full flex items-center justify-center text-charcoal hover:bg-gold-gradient hover:text-white transition-all shadow-sm">
+                                                <Instagram size={18} />
                                             </a>
-                                            <a href="#" className="w-12 h-12 bg-alabaster rounded-full flex items-center justify-center text-charcoal hover:bg-gold-gradient hover:text-white transition-all shadow-sm">
-                                                <Facebook size={20} />
+                                            <a href="#" className="w-10 h-10 bg-alabaster rounded-full flex items-center justify-center text-charcoal hover:bg-gold-gradient hover:text-white transition-all shadow-sm">
+                                                <Facebook size={18} />
                                             </a>
                                         </div>
                                     </div>

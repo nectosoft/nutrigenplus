@@ -40,10 +40,10 @@ const PhilosophySection = () => {
                             className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.08)] bg-white"
                         >
                             <Image
-                                src="/hero-product.png"
+                                src="/hero-product-new.png"
                                 alt="NutriGen Philosophy"
                                 fill
-                                className="object-cover scale-125 opacity-70 grayscale hover:grayscale-0 transition-all duration-1000"
+                                className="object-contain p-8 hover:scale-105 transition-all duration-1000"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
                         </motion.div>
@@ -52,6 +52,7 @@ const PhilosophySection = () => {
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                             className="absolute -right-8 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-white max-w-[200px] hidden lg:block"
                         >
                             <div className="h-0.5 w-12 bg-[#DE9D9D] mb-6" />
@@ -66,6 +67,7 @@ const PhilosophySection = () => {
                             <motion.div
                                 initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                                 className="inline-flex items-center gap-6"
                             >
                                 <span className="text-[#DE9D9D] font-bold tracking-[0.5em] text-[10px] uppercase">
@@ -76,7 +78,8 @@ const PhilosophySection = () => {
                             <motion.h2
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                viewport={{ once: true, amount: 0.5, margin: "-100px" }}
+                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
                                 className="text-6xl md:text-8xl font-serif text-charcoal leading-[0.9] tracking-tight"
                             >
                                 {t.philosophy.title}
@@ -87,6 +90,7 @@ const PhilosophySection = () => {
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                                 transition={{ delay: 0.2 }}
                                 className="text-xl md:text-2xl text-gray-600 font-serif leading-relaxed italic"
                             >
@@ -96,6 +100,7 @@ const PhilosophySection = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                                 transition={{ delay: 0.4 }}
                                 className="relative pl-12"
                             >
@@ -108,6 +113,7 @@ const PhilosophySection = () => {
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                                 transition={{ delay: 0.6 }}
                                 className="text-base text-gray-500 font-serif leading-relaxed"
                             >
@@ -119,6 +125,7 @@ const PhilosophySection = () => {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                             className="flex items-center gap-8 pt-8"
                         >
                             <div className="w-20 h-20 rounded-full border border-black/5 flex items-center justify-center relative">
@@ -150,6 +157,7 @@ const PhilosophySection = () => {
                                         key={idx}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
                                         transition={{ delay: idx * 0.1 }}
                                         className="space-y-4"
                                     >
@@ -179,6 +187,7 @@ const PhilosophySection = () => {
                                             key={idx}
                                             initial={{ opacity: 0, x: 20 }}
                                             whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
                                             transition={{ delay: idx * 0.1 }}
                                             className="flex items-start gap-6"
                                         >

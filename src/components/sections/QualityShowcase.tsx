@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Fish, CheckCircle, Leaf, Zap } from "lucide-react";
+import { Fish, CheckCircle, ShieldCheck, Zap } from "lucide-react";
 import { useTranslation } from "@/context/translation-context";
 
 const QualityShowcase = () => {
@@ -18,8 +18,8 @@ const QualityShowcase = () => {
             text: t.ingredients.quality.amino,
         },
         {
-            icon: <Leaf className="w-6 h-6" />,
-            text: t.ingredients.quality.gmo_free,
+            icon: <ShieldCheck className="w-6 h-6" />,
+            text: (t.ingredients.quality as any).beef_collagen,
         },
         {
             icon: <Zap className="w-6 h-6" />,
@@ -36,6 +36,7 @@ const QualityShowcase = () => {
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                             transition={{ delay: index * 0.1 }}
                             className="flex flex-col items-center text-center gap-4 group"
                         >

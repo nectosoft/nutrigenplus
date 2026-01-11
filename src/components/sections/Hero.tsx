@@ -21,14 +21,14 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="flex flex-col gap-8 max-w-2xl"
+                    className="flex flex-col gap-8 max-w-2xl text-center lg:text-left items-center lg:items-start"
                 >
                     <div className="space-y-4">
                         <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="text-gold-end font-medium tracking-[0.2em] uppercase text-sm"
+                            className="text-gold-end font-medium tracking-[0.2em] uppercase text-xs md:text-sm"
                         >
                             {t.hero.tagline}
                         </motion.span>
@@ -36,15 +36,24 @@ const Hero = () => {
                             {t.hero.title_part1} <br />
                             <span className="text-gold-gradient italic">{t.hero.title_italic}</span>
                         </h1>
-                        <p className="text-base text-charcoal/60 max-w-md leading-relaxed">
+                        <p className="text-base text-charcoal/60 max-w-md leading-relaxed mx-auto lg:mx-0">
                             {t.hero.description}
                         </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 pt-2">
+                    <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 w-full sm:w-auto">
                         <Button
                             size="lg"
-                            className="bg-gold-gradient text-white border-none px-12 h-14 rounded-xl text-[10px] uppercase tracking-[0.4em] font-bold hover:scale-105 transition-all duration-700 shadow-xl group"
+                            className="bg-gold-gradient text-white border-none px-12 h-14 rounded-xl text-[10px] uppercase tracking-[0.4em] font-bold hover:scale-105 transition-all duration-700 shadow-xl group w-full sm:w-auto"
+                            onClick={() => {
+                                const element = document.getElementById("shop");
+                                if (element) {
+                                    const navHeight = 80;
+                                    const elementPosition = element.getBoundingClientRect().top;
+                                    const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                                }
+                            }}
                         >
                             {t.hero.shop_now}
                             <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -52,7 +61,16 @@ const Hero = () => {
                         <Button
                             variant="outline"
                             size="lg"
-                            className="border-gold-start/20 text-charcoal px-12 h-14 rounded-xl text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-gold-start/5 transition-all duration-500"
+                            className="border-gold-start/20 text-charcoal px-12 h-14 rounded-xl text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-gold-start/5 transition-all duration-500 w-full sm:w-auto"
+                            onClick={() => {
+                                const element = document.getElementById("science");
+                                if (element) {
+                                    const navHeight = 80;
+                                    const elementPosition = element.getBoundingClientRect().top;
+                                    const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                                }
+                            }}
                         >
                             {t.hero.our_science}
                         </Button>
@@ -79,27 +97,46 @@ const Hero = () => {
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="relative flex justify-center items-center"
                 >
-                    {/* Subtle glow behind product */}
-                    <div className="absolute w-[80%] h-[80%] bg-gold-mid/20 blur-[120px] rounded-full -z-10" />
+                    {/* Premium Narrative Elements */}
+                    <div className="absolute inset-0 pointer-events-none">
+                        {/* Dynamic Radiance */}
+                        <motion.div
+                            animate={{
+                                opacity: [0.4, 0.6, 0.4],
+                                scale: [1, 1.1, 1],
+                            }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold-mid/20 blur-[120px] rounded-full -z-10"
+                        />
+
+                        {/* Floating Gold Dust */}
+                        <motion.div
+                            animate={{ y: [0, -30, 0], opacity: [0, 0.5, 0] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-0 right-[20%] w-2 h-2 bg-gold-end rounded-full blur-[1px]"
+                        />
+                        <motion.div
+                            animate={{ y: [0, 20, 0], opacity: [0, 0.3, 0] }}
+                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="absolute bottom-[20%] left-[10%] w-3 h-3 bg-gold-start rounded-full blur-[2px]"
+                        />
+                    </div>
+
+                    {/* Decorative Platform */}
+                    <div className="absolute bottom-0 w-[60%] h-4 bg-charcoal/5 blur-xl rounded-full" />
 
                     <motion.div
-                        animate={{
-                            y: [0, -20, 0],
-                        }}
-                        transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
-                        className="w-full max-w-md md:max-w-xl"
+                        animate={{ y: [0, -15, 0] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-full max-w-lg lg:max-w-xl relative z-10"
                     >
                         <Image
-                            src="/hero-product.png"
-                            alt="NutriGen+ Pure Gold Collagen Tub"
-                            width={800}
-                            height={800}
+                            src="/hero-product-new.png"
+                            alt="NutriGen+ Premium Collagen"
+                            width={1000}
+                            height={1000}
                             priority
-                            className="w-full h-auto drop-shadow-[0_20px_50px_rgba(212,175,55,0.2)]"
+                            className="w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.12)]"
                         />
                     </motion.div>
                 </motion.div>

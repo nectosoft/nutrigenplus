@@ -13,12 +13,12 @@ export const translations = {
         },
         hero: {
             tagline: "Science Meets Luxury",
-            title_part1: "The Ultimate",
-            title_italic: "6-in-1 Formula",
-            description: "Experience the pinnacle of cellular rejuvenation. Our Pure Gold Collagen is molecularly engineered with 6 bioactive peptides for maximum absorption and timeless radiance.",
+            title_part1: "Innovative formula",
+            title_italic: "",
+            description: "Experience the pinnacle of cellular rejuvenation. Our Pure Gold Collagen is molecularly engineered for maximum absorption and timeless radiance.",
             shop_now: "Shop Now",
-            our_science: "Our Science",
-            bioavailable: "Bioavailable",
+            our_science: "Buy Now",
+            bioavailable: "Bioactive",
             sustainable: "Sustainable",
         },
         ritual: {
@@ -27,7 +27,7 @@ export const translations = {
             description: "Elevate your morning routine into a ceremony of rejuvenation. Three simple steps to activate your timeless radiance.",
             step1: {
                 title: "Measure",
-                desc: "One scoop of Pure Gold peptides, precisely calibrated.",
+                desc: "3 measuring spoons of Collagen peptides for your daily dose.",
             },
             step2: {
                 title: "Dissolve",
@@ -45,25 +45,25 @@ export const translations = {
             items: {
                 peptides: {
                     name: "Bioactive Peptides",
-                    desc: "6 specific peptide chains for targeted cellular repair.",
+                    desc: "FULL MATRIX 18 TYPES OF AMINO ACIDS",
                 },
-                vitaminc: {
-                    name: "Acerola Vitamin C",
-                    desc: "Natural catalyst for superior collagen synthesis.",
+                bioavailability: {
+                    name: "Superior Absorption",
+                    desc: "ENZYMATICALLY HYDROLYZED FOR 99% BIOAVAILABILITY",
                 },
-                hyaluronic: {
-                    name: "Hyaluronic Acid",
-                    desc: "Micro-molecular weight for deep dermal hydration.",
+                purity: {
+                    name: "Purity Standard",
+                    desc: "ZERO ADDITIVES, HORMONES, OR ARTIFICIAL FILLERS",
                 },
-                zinc: {
-                    name: "Pure Zinc",
-                    desc: "Essential mineral for structural integrity and defense.",
+                precision: {
+                    name: "Molecular Precision",
+                    desc: "AVERAGE MOLECULAR WEIGHT OF 2000 DALTONS",
                 },
             },
             quality: {
                 marine: "Pure Marine Collagen",
                 amino: "Rich in Amino Acids",
-                gmo_free: "Gluten & GMO Free",
+                beef_collagen: "Pure Beef Collagen",
                 soluble: "Easily Soluble",
             },
         },
@@ -77,7 +77,7 @@ export const translations = {
             certified: "Certified Excellence",
         },
         testimonials: {
-            title: "Shared Experiences",
+            title: "Reviews",
             subtitle: "THE RADIANCE VOICES",
             quote1: {
                 text: "A transformation unlike any other. My skin feels like it's been structurally renewed from within.",
@@ -147,14 +147,14 @@ export const translations = {
             suggested_use: "Suggested Use",
             items: {
                 bioactive: {
-                    name: "Bioactive Collagen Peptides: Total Body Support (6-in-1 Formula)",
+                    name: "Bioactive Collagen Peptides: Total Body Support",
                     slug: "bioactive-collagen",
-                    info: "6 in 1 | Bioactive Peptides",
+                    info: "Bovine | Bioactive Peptides",
                     price: "35.99 €",
                     oldPrice: "50.00 €",
                     saleLabel: "28% Sale",
                     description: "Elevate your daily wellness routine with Nutrigen+ Bioactive Collagen Peptides, a premium, grass-fed supplement designed for comprehensive structural support.",
-                    longDescription: "Our '6 in 1' formula provides high-quality protein and a complete profile of 18 amino acids to help you look and feel your best from the inside out. This unflavoured, easy-to-mix powder is crafted for maximum versatility and absorption. Whether you are an athlete looking to protect your joints or someone focused on age-defying beauty, our collagen provides the essential building blocks your body needs.",
+                    longDescription: "Our formula provides high-quality protein and a complete profile of 18 amino acids to help you look and feel your best from the inside out. This unflavoured, easy-to-mix powder is crafted for maximum versatility and absorption. Whether you are an athlete looking to protect your joints or someone focused on age-defying beauty, our collagen provides the essential building blocks your body needs.",
                     benefits: [
                         { title: "Hair & Skin", desc: "Promotes elasticity and hydration for a radiant glow and stronger hair." },
                         { title: "Nails", desc: "Supports nail thickness and reduces brittleness." },
@@ -174,9 +174,6 @@ export const translations = {
                     },
                     ingredients: [
                         { name: "Verisol® Bioactive Peptides", detail: "Clinically proven to reduce wrinkle depth and increase skin elasticity." },
-                        { name: "Hyaluronic Acid (Low Molecular)", detail: "Deeply hydrates the dermal matrix from within." },
-                        { name: "Organic Acerola Vitamin C", detail: "The natural catalyst required for collagen cross-linking." },
-                        { name: "Biotin + Zinc", detail: "Essential co-factors for keratin production and structural strength." }
                     ],
                     specs: {
                         weight: "400g",
@@ -186,7 +183,7 @@ export const translations = {
                     },
                     molecular_mechanism: {
                         title: "The Molecular Mechanism",
-                        description: "Our 6-in-1 formula works at a cellular level to trigger biological rejuvenation.",
+                        description: "Our formula works at a cellular level to trigger biological rejuvenation.",
                         steps: [
                             { title: "Bio-Reception", desc: "Micro-peptides bypass standard digestion for 99% intestinal absorption." },
                             { title: "Cellular Signaling", desc: "Specific peptide chains act as messengers to activate collagen-producing cells." },
@@ -262,7 +259,7 @@ export const translations = {
         },
         benefits: {
             title: "NEW HIGH-QUALITY",
-            subtitle: "6-IN-1 FORMULA",
+            subtitle: "FORMULA",
             hair: {
                 title: "Hair",
                 desc: "Nourishes the hair, reduces hair loss, and adds thickness and shine.",
@@ -291,7 +288,7 @@ export const translations = {
         footer: {
             brand_desc: "A boutique scientific laboratory dedicated to the art of longevity and biological optimization.",
             explore: "Explore",
-            service: "Service",
+            service: "Services",
             join: "Join the Circle",
             newsletter_desc: "Receive curated insights on molecular science and exclusive access to new releases.",
             subscribe: "Subscribe",
@@ -356,10 +353,10 @@ export const translations = {
             success: "Message sent. Our team will contact you shortly.",
             error_generic: "Something went wrong. Please try again.",
             error_connection: "Connection error. Please check your internet.",
-            office_email: "office@nutrigenplus.com",
+            office_email: "nutrigenbulgaria@gmail.com",
             phone: "+359 885 852 009",
             location: "NutriGen+ Laboratories",
-            address: "Sofia, Bulgaria",
+            address: "ul. Severna 1, Pleven 5800, Bulgaria",
             city: "European Union",
             concierge: "Digital Concierge",
             concierge_desc: "Direct access to our lead scientific advisors for personalized longevity protocols.",
@@ -386,9 +383,9 @@ export const translations = {
                 ]
             },
             trust_icons: [
-                { title: "Grass-Fed Certified", desc: "Ethical sourcing" },
+                { title: "Bovine Certified", desc: "Ethical sourcing" },
+                { title: "Certified Fish Collagen", desc: "Pristine marine source" },
                 { title: "Lab-Tested Purity", desc: "Safety and trust" },
-                { title: "No Hidden Fillers", desc: "Transparency" }
             ]
         },
         recipes: {
@@ -433,8 +430,8 @@ export const translations = {
             quote: '"We do not inherit the earth from our ancestors; we borrow it from our children."',
         },
         common: {
-            gold_standard: "The Gold Standard",
-            marine_depth: "The Marine Depth",
+            gold_standard: "Beef Collagen",
+            marine_depth: "Fish Collagen",
             purity: "Purity",
             global_ritual: "Global Ritual",
             edition: "Edition",
@@ -474,12 +471,12 @@ export const translations = {
         },
         hero: {
             tagline: "Науката среща лукса",
-            title_part1: "Ултрамодерна",
-            title_italic: "формула 6 в 1",
-            description: "Изживейте върха на клетъчното подмладяване. Нашият Pure Gold колаген е молекулярно проектиран с 6 биоактивни пептида за максимално усвояване и вечно сияние.",
+            title_part1: "Иновативна формула",
+            title_italic: "",
+            description: "Изживейте върха на клетъчното подмладяване. Нашият Pure Gold колаген е молекулярно проектиран за максимално усвояване и вечно сияние.",
             shop_now: "Купи сега",
-            our_science: "Нашата наука",
-            bioavailable: "Бионаличен",
+            our_science: "Купи сега",
+            bioavailable: "Биоактивен",
             sustainable: "Устойчив",
         },
         ritual: {
@@ -488,7 +485,7 @@ export const translations = {
             description: "Превърнете сутрешната си рутина в церемония на подмладяване. Три лесни стъпки за активиране на вашето вечно сияние.",
             step1: {
                 title: "Измерете",
-                desc: "Една мерителна лъжица Pure Gold пептиди, прецизно калибрирани.",
+                desc: "3 мерителни лъжици колагенови пептиди за вашата дневна доза.",
             },
             step2: {
                 title: "Разтворете",
@@ -506,25 +503,25 @@ export const translations = {
             items: {
                 peptides: {
                     name: "Биоактивни пептиди",
-                    desc: "6 специфични пептидни вериги за целенасочено клетъчно възстановяване.",
+                    desc: "FULL MATRIX 18 ТИПА АМИНОКИСЕЛИНИ",
                 },
-                vitaminc: {
-                    name: "Ацерола Витамин C",
-                    desc: "Естествен катализатор за превъзходен синтез на колаген.",
+                bioavailability: {
+                    name: "Превъзходна абсорбция",
+                    desc: "ЕНЗИМНО ХИДРОЛИЗИРАН ЗА 99% БИОНАЛИЧНОСТ",
                 },
-                hyaluronic: {
-                    name: "Хиалуронова киселина",
-                    desc: "Микромолекулно тегло за дълбока хидратация на дермата.",
+                purity: {
+                    name: "Стандарт за чистота",
+                    desc: "БЕЗ ДОБАВКИ, ХОРМОНИ ИЛИ ИЗКУСТВЕНИ ПЪЛНИТЕЛИ",
                 },
-                zinc: {
-                    name: "Чист Цинк",
-                    desc: "Есенциален минерал за структурна цялост и защита.",
+                precision: {
+                    name: "Молекулярна прецизност",
+                    desc: "СРЕДНО МОЛЕКУЛНО ТЕГЛО ОТ 2000 ДАЛТОНА",
                 },
             },
             quality: {
                 marine: "Чист морски колаген",
                 amino: "Богат на аминокиселини",
-                gmo_free: "Без глутен и ГМО",
+                beef_collagen: "Чист телешки колаген",
                 soluble: "Лесно разтворим",
             },
         },
@@ -538,7 +535,7 @@ export const translations = {
             certified: "Сертифицирано съвършенство",
         },
         testimonials: {
-            title: "Споделени преживявания",
+            title: "Отзиви",
             subtitle: "ГЛАСОВЕТЕ НА СИЯНИЕТО",
             quote1: {
                 text: "Трансформация като никое друго преживяване. Кожата ми се чувства структурно обновена отвътре.",
@@ -608,14 +605,14 @@ export const translations = {
             suggested_use: "Препоръчителна употреба",
             items: {
                 bioactive: {
-                    name: "Биоактивни колагенови пептиди: Пълна подкрепа за тялото (формула 6-в-1)",
+                    name: "Биоактивни колагенови пептиди: Пълна подкрепа за тялото",
                     slug: "bioactive-collagen",
-                    info: "6 в 1 | Биоактивни пептиди",
+                    info: "Телешки | Биоактивни пептиди",
                     price: "35,99 €",
                     oldPrice: "50,00 €",
                     saleLabel: "28% Отстъпка",
                     description: "Подобрете ежедневната си уелнес рутина с Bioactive Collagen Peptides на Nutrigen+ – първокласна добавка за цялостна структурна подкрепа.",
-                    longDescription: "Нашата формула „6 в 1“ осигурява висококачествени протеини и пълен профил от 18 аминокиселини. Този безвкусен, лесен за смесване прах е създаден за максимална гъвкавост и усвояване. Независимо дали сте спортист, който иска да защити ставите си, или човек, фокусиран върху красотата, нашият колаген осигурява основните градивни елементи, от които се нуждае тялото ви.",
+                    longDescription: "Нашата формула осигурява висококачествени протеини и пълен профил от 18 аминокиселини. Този безвкусен, лесен за смесване прах е създаден за максимална гъвкавост и усвояване. Независимо дали сте спортист, който иска да защити ставите си, или човек, фокусиран върху красотата, нашият колаген осигурява основните градивни елементи, от които се нуждае тялото ви.",
                     benefits: [
                         { title: "Коса и кожа", desc: "Насърчава еластичността и хидратацията за сияен блясък и по-здрава коса." },
                         { title: "Нокти", desc: "Поддържа дебелината на ноктите и намалява чупливостта." },
@@ -635,9 +632,6 @@ export const translations = {
                     },
                     ingredients: [
                         { name: "Verisol® Биоактивни пептиди", detail: "Клинично потвърдени за редукция на фините линии и повишена дермална еластичност." },
-                        { name: "Хиалуронова киселина", detail: "Нискомолекулярна структура за дълбока хидратация на дермалната матрица." },
-                        { name: "Органична Ацерола", detail: "Биологичен катализатор за ефективно омрежване на колагеновите влакна." },
-                        { name: "Биотин + Цинк", detail: "Основни кофактори за кератиновата структура и клетъчната защита." }
                     ],
                     specs: {
                         weight: "400г",
@@ -647,7 +641,7 @@ export const translations = {
                     },
                     molecular_mechanism: {
                         title: "Молекулярен механизъм",
-                        description: "Синергичната формула 6-в-1 действа на клетъчно ниво за иницииране на биологично обновяване.",
+                        description: "Синергичната формула действа на клетъчно ниво за иницииране на биологично обновяване.",
                         steps: [
                             { title: "Био-асимилация", desc: "Микро-пептидите заобикалят стандартното храносмилане за 99% абсорбция." },
                             { title: "Клетъчна сигнализация", desc: "Специфични вериги активират фибробластите за производство на нов колаген." },
@@ -723,7 +717,7 @@ export const translations = {
         },
         benefits: {
             title: "НОВА ВИСОКОКАЧЕСТВЕНА",
-            subtitle: "ФОРМУЛА 6В1",
+            subtitle: "ФОРМУЛА",
             hair: {
                 title: "Коса",
                 desc: "Подхранва косъма, намалява косопада и придава плътност и блясък.",
@@ -817,10 +811,10 @@ export const translations = {
             success: "Съобщението е изпратено. Нашият екип ще се свърже с вас скоро.",
             error_generic: "Нещо се обърка. Моля, опитайте отново.",
             error_connection: "Проблем с връзката. Моля, проверете интернета си.",
-            office_email: "office@nutrigenplus.com",
+            office_email: "nutrigenbulgaria@gmail.com",
             phone: "+359 885 852 009",
             location: "NutriGen+ Laboratories",
-            address: "София, България",
+            address: "ул. Северна 1, Плевен 5800, България",
             city: "Европейски съюз",
             concierge: "Дигитален консиерж",
             concierge_desc: "Директен достъп до нашите водещи научни съветници за персонализирани протоколи за дълголетие.",
@@ -847,9 +841,9 @@ export const translations = {
                 ]
             },
             trust_icons: [
-                { title: "Сертифициран говежди колаген", desc: "Етичен произход" },
-                { title: "Лабораторно тествана чистота", desc: "Безопасност и доверие" },
-                { title: "Без скрити пълнители", desc: "Прозрачност" }
+                { title: "Телешки колаген", desc: "Етичен източник" },
+                { title: "Рибен колаген", desc: "Чист морски източник" },
+                { title: "Лабораторна чистота", desc: "Безопасност и доверие" },
             ]
         },
         recipes: {
@@ -894,8 +888,8 @@ export const translations = {
             quote: '"Ние не наследяваме Земята от нашите предци; ние я заемаме от нашите деца."',
         },
         common: {
-            gold_standard: "Златният стандарт",
-            marine_depth: "Морска дълбочина",
+            gold_standard: "Телешки колаген",
+            marine_depth: "Рибен колаген",
             purity: "Чистота",
             global_ritual: "Мистичен ритуал",
             verified: "Лабораторно потвърдено",

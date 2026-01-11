@@ -13,6 +13,7 @@ const TranslationContext = createContext<TranslationContextType | undefined>(und
 
 export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [language, setLanguage] = useState<Language>("bg"); // Default to Bulgarian
+    const [isMounted, setIsMounted] = useState(false);
 
     // Load language preference from local storage on mount
     useEffect(() => {
@@ -20,6 +21,7 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
         if (savedLang && (savedLang === "en" || savedLang === "bg")) {
             setLanguage(savedLang);
         }
+        setIsMounted(true);
     }, []);
 
     const handleSetLanguage = (lang: Language) => {
@@ -31,7 +33,14 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     return (
         <TranslationContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
-            {children}
+            {/* 
+                We use a hydration guard to prevent the "double load" flicker.
+                By rendering a subtle placeholder or nothing until mounted,
+                we ensure Framer Motion animations trigger exactly once.
+            */}
+            <div style={{ visibility: isMounted ? 'visible' : 'hidden' }}>
+                {children}
+            </div>
         </TranslationContext.Provider>
     );
 };

@@ -64,6 +64,7 @@ const FAQSection = () => {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                         className="flex items-center gap-4"
                     >
                         <div className="h-px w-10 bg-[#DE9D9D]" />
@@ -74,6 +75,7 @@ const FAQSection = () => {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                         className="text-5xl md:text-7xl font-serif text-charcoal"
                     >
                         {t.faq.title}
@@ -94,12 +96,6 @@ const FAQSection = () => {
                 ))}
             </div>
 
-            {/* Scientific foot note */}
-            <div className="container mx-auto px-6 mt-20 text-center">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-gray-300 font-medium">
-                    {t.faq.still_questions} <span className="text-[#DE9D9D] border-b border-[#DE9D9D]/20 cursor-pointer hover:border-[#DE9D9D]">{t.faq.concierge}</span>
-                </p>
-            </div>
         </section>
     );
 };

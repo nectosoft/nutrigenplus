@@ -3,7 +3,7 @@ import Hero from "@/components/sections/Hero";
 import ProductShowcase from "@/components/sections/ProductShowcase";
 import QualityShowcase from "@/components/sections/QualityShowcase";
 import BenefitsGrid from "@/components/sections/BenefitsGrid";
-import ScienceSection from "@/components/sections/ScienceSection";
+// import ScienceSection from "@/components/sections/ScienceSection";
 import RitualSection from "@/components/sections/RitualSection";
 import IngredientsSection from "@/components/sections/IngredientsSection";
 import PhilosophySection from "@/components/sections/PhilosophySection";
@@ -23,7 +23,7 @@ export default function Home() {
       <ProductShowcase />
       <RitualSection />
       <BenefitsGrid />
-      <ScienceSection />
+      {/* <ScienceSection /> */}
       <IngredientsSection />
       <TestimonialsSection />
       <PhilosophySection />

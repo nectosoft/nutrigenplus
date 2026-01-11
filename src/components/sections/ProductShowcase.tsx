@@ -58,6 +58,7 @@ const ProductShowcase = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         className="flex items-center gap-3"
                     >
                         <div className="h-[0.5px] w-8 bg-gold-start/40" />
@@ -68,24 +69,26 @@ const ProductShowcase = () => {
                     </motion.div>
 
                     {/* Boutique Selector Switch */}
-                    <div className="bg-alabaster/60 backdrop-blur-xl p-1.5 rounded-2xl border border-charcoal/5 flex gap-2 shadow-[0_10px_40px_rgba(0,0,0,0.03)]">
-                        {products.map((p, idx) => (
-                            <button
-                                key={p.id}
-                                onClick={() => setActiveIndex(idx)}
-                                className={`px-8 md:px-12 py-3.5 rounded-xl text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] transition-all duration-700 relative z-10 ${activeIndex === idx ? "text-white" : "text-charcoal/40 hover:text-charcoal"
-                                    }`}
-                            >
-                                {activeIndex === idx && (
-                                    <motion.div
-                                        layoutId="activeTab"
-                                        className="absolute inset-0 bg-charcoal rounded-xl -z-10 shadow-2xl"
-                                        transition={{ type: "spring", bounce: 0.15, duration: 0.8 }}
-                                    />
-                                )}
-                                {p.id === "bioactive-collagen" ? t.common.gold_standard : t.common.marine_depth}
-                            </button>
-                        ))}
+                    <div className="w-full max-w-full overflow-x-auto pb-4 md:pb-0 hide-scrollbar flex justify-center">
+                        <div className="bg-alabaster/60 backdrop-blur-xl p-1.5 rounded-2xl border border-charcoal/5 flex gap-2 shadow-[0_10px_40px_rgba(0,0,0,0.03)] shrink-0 mx-auto">
+                            {products.map((p, idx) => (
+                                <button
+                                    key={p.id}
+                                    onClick={() => setActiveIndex(idx)}
+                                    className={`px-6 md:px-12 py-3.5 rounded-xl text-[9px] md:text-[11px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] transition-all duration-700 relative z-10 whitespace-nowrap ${activeIndex === idx ? "text-white" : "text-charcoal/40 hover:text-charcoal"
+                                        }`}
+                                >
+                                    {activeIndex === idx && (
+                                        <motion.div
+                                            layoutId="activeTab"
+                                            className="absolute inset-0 bg-charcoal rounded-xl -z-10 shadow-2xl"
+                                            transition={{ type: "spring", bounce: 0.15, duration: 0.8 }}
+                                        />
+                                    )}
+                                    {p.id === "bioactive-collagen" ? t.common.gold_standard : t.common.marine_depth}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

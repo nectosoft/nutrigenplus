@@ -41,6 +41,27 @@ const BenefitsGrid = () => {
         },
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, scale: 0.9, y: 20 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: "easeOut" as any }
+        }
+    };
+
     return (
         <section className="py-24 bg-white">
             <div className="container mx-auto px-6">
@@ -48,6 +69,7 @@ const BenefitsGrid = () => {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5 }}
                         className="text-4xl md:text-5xl font-serif text-charcoal uppercase"
                     >
                         {t.benefits.title} <br />
@@ -56,13 +78,17 @@ const BenefitsGrid = () => {
                     <div className="h-1 w-24 bg-gold-gradient mx-auto" />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2, margin: "-100px" }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
                     {benefits.map((benefit, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: index * 0.1 }}
+                            variants={itemVariants}
                             className="p-8 bg-alabaster rounded-2xl border border-gold-start/10 hover:border-gold-start/40 transition-all duration-300 group"
                         >
                             <div className="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -72,7 +98,7 @@ const BenefitsGrid = () => {
                             <p className="text-charcoal/60 leading-relaxed">{benefit.description}</p>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

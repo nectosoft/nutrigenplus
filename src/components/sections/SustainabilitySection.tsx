@@ -69,7 +69,7 @@ export default function SustainabilitySection() {
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                             transition={{ delay: index * 0.2, duration: 0.8 }}
                             className="group p-8 bg-white/50 backdrop-blur-sm border border-black/5 hover:border-[#DE9D9D]/30 transition-all duration-500 rounded-2xl"
                         >
@@ -92,6 +92,7 @@ export default function SustainabilitySection() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                         transition={{ duration: 1 }}
                         className="space-y-10"
                     >
