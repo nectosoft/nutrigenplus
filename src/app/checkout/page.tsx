@@ -42,6 +42,18 @@ const CheckoutContent = () => {
     const router = useRouter();
     const [isSuccess, setIsSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [showCityDropdown, setShowCityDropdown] = useState(false);
+    const cityRef = React.useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (cityRef.current && !cityRef.current.contains(event.target as Node)) {
+                setShowCityDropdown(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     // Form State
     const [formData, setFormData] = useState({
@@ -128,20 +140,27 @@ const CheckoutContent = () => {
 
         if (allEcontCities.length > 0) {
             const results = allEcontCities
-                .filter(c =>
-                    c.name.toLowerCase().includes(val.toLowerCase()) ||
-                    (c.nameEn && c.nameEn.toLowerCase().includes(val.toLowerCase()))
-                )
+                .filter(c => {
+                    const searchVal = val.toLowerCase().trim();
+                    return (
+                        c.name.toLowerCase().includes(searchVal) ||
+                        (c.nameEn && c.nameEn.toLowerCase().includes(searchVal)) ||
+                        (c.postCode && c.postCode.includes(searchVal))
+                    );
+                })
                 .slice(0, 50);
             setCities(results);
+            setShowCityDropdown(results.length > 0);
         } else {
             setIsSearchingCities(true);
             try {
                 const results = await getEcontCities(val);
                 setCities(results);
+                setShowCityDropdown(results.length > 0);
             } catch (error) {
                 console.error("City Search Error:", error);
                 setCities([]);
+                setShowCityDropdown(false);
             } finally {
                 setIsSearchingCities(false);
             }
@@ -159,6 +178,7 @@ const CheckoutContent = () => {
             postalCode: city.postCode || p.postalCode
         }));
         setCities([]);
+        setShowCityDropdown(false);
 
         if (allEcontOffices.length > 0) {
             const results = allEcontOffices.filter(o => o.cityId === city.id);
@@ -349,7 +369,7 @@ const CheckoutContent = () => {
 
                                 {/* Selection Flow */}
                                 <div className="space-y-3">
-                                    <div className="relative">
+                                    <div className="relative" ref={cityRef}>
                                         <div className="absolute left-6 top-1/2 -translate-y-1/2 text-charcoal/30">
                                             <Search size={18} />
                                         </div>
@@ -357,8 +377,12 @@ const CheckoutContent = () => {
                                             type="text"
                                             value={formData.cityName}
                                             onChange={(e) => handleCitySearch(e.target.value)}
+                                            onFocus={() => {
+                                                if (cities.length > 0) setShowCityDropdown(true);
+                                            }}
                                             placeholder={t.checkout.city}
                                             required
+                                            autoComplete="off"
                                             className="h-14 pl-14 rounded-2xl border-charcoal/5 bg-white shadow-sm focus:border-gold-end text-sm"
                                         />
                                         {isSearchingCities && (
@@ -366,8 +390,8 @@ const CheckoutContent = () => {
                                                 <div className="w-4 h-4 border-2 border-gold-end border-t-transparent rounded-full animate-spin" />
                                             </div>
                                         )}
-                                        {cities.length > 0 && (
-                                            <div className="absolute z-40 w-full mt-2 bg-white border border-charcoal/10 rounded-2xl shadow-xl overflow-hidden max-h-60 overflow-y-auto">
+                                        {showCityDropdown && cities.length > 0 && (
+                                            <div className="absolute z-50 w-full mt-2 bg-white border border-charcoal/10 rounded-2xl shadow-xl overflow-hidden max-h-60 overflow-y-auto">
                                                 {cities.map(city => (
                                                     <button
                                                         key={city.id}
