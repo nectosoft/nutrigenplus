@@ -422,7 +422,12 @@ const CheckoutContent = () => {
                                                 value={formData.officeId}
                                                 onChange={(e) => {
                                                     const off = offices.find(o => o.id === e.target.value);
-                                                    setFormData(p => ({ ...p, officeId: e.target.value, officeName: off?.name || "" }));
+                                                    setFormData(p => ({
+                                                        ...p,
+                                                        officeId: e.target.value,
+                                                        officeName: off?.name || "",
+                                                        address: off?.address || ""
+                                                    }));
                                                 }}
                                                 className="w-full h-14 pl-14 bg-white border border-charcoal/5 rounded-2xl px-6 focus:ring-2 focus:ring-gold-end/20 transition-all text-sm appearance-none outline-none focus:border-gold-end shadow-sm"
                                                 required

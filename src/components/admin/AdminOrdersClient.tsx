@@ -258,11 +258,17 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
 
                                                     <div className="space-y-2">
                                                         {order.deliveryType === 'office' && (
-                                                            <p className="text-sm font-bold text-gold-end leading-snug">
-                                                                {order.officeName}
-                                                            </p>
+                                                            <div className="space-y-1">
+                                                                <p className="text-[9px] uppercase tracking-widest text-gold-end font-black">{t.admin.office}</p>
+                                                                <p className="text-sm font-bold text-charcoal leading-snug">
+                                                                    {order.officeName || t.admin.office}
+                                                                </p>
+                                                            </div>
                                                         )}
-                                                        <p className="text-sm text-charcoal/70 leading-relaxed font-medium">{order.address}</p>
+                                                        <div className="space-y-1">
+                                                            {order.deliveryType === 'office' && <p className="text-[9px] uppercase tracking-widest text-charcoal/30 font-black">{t.admin.address}</p>}
+                                                            <p className="text-sm text-charcoal/70 leading-relaxed font-medium">{order.address}</p>
+                                                        </div>
                                                         <div className="flex items-center gap-2 pt-2">
                                                             <span className="bg-charcoal text-white text-[9px] px-3 py-1 rounded-full font-black uppercase tracking-widest">{order.postalCode}</span>
                                                             <p className="text-sm font-bold text-charcoal capitalize">{order.cityName || order.city}</p>
