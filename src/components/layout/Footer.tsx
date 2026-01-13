@@ -38,7 +38,7 @@ const Footer = () => {
     return (
         <footer className="bg-[#1a1a1a] text-alabaster pt-16 md:pt-24 pb-12 overflow-hidden relative">
             {/* Background Grain/Noise or subtle gradient */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.png')]" />
+            <div className="absolute inset-0 pointer-events-none noise-overlay" />
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 md:gap-16 mb-16 md:mb-20">
