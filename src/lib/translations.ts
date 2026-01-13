@@ -541,6 +541,8 @@ export const translations = {
             grand_total: "Grand Total",
             secure_card: "Stripe Secure Card",
             cod: "Cash on Delivery",
+            export_csv: "Export CSV",
+            unit_px: "Price",
         },
     },
     bg: {
@@ -1085,6 +1087,8 @@ export const translations = {
             grand_total: "Крайна сума",
             secure_card: "Stripe сигурна карта",
             cod: "Наложен платеж",
+            export_csv: "Експорт CSV",
+            unit_px: "Цена",
         },
     },
 };
