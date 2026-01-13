@@ -39,7 +39,7 @@ export default function ContactSection() {
     };
 
     return (
-        <section className="py-24 bg-white relative overflow-hidden" id="contact">
+        <section className="py-16 md:py-24 bg-white relative overflow-hidden" id="contact">
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-black/5 to-transparent" />
 
             <div className="container mx-auto px-6">
@@ -90,7 +90,7 @@ export default function ContactSection() {
                                 </div>
                                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white mb-4">{t.contact.priority_support}</h3>
                                 <p className="text-[11px] text-white/40 font-medium leading-relaxed mb-6 italic">
-                                    Average response time for existing ritual practitioners: &lt; 2 hours.
+                                    {t.contact.support_time}
                                 </p>
                                 <div className="text-[10px] text-gold-start font-bold border-b border-gold-start/20 inline-block cursor-pointer hover:border-gold-start transition-colors">
                                     {t.contact.phone}
@@ -116,7 +116,7 @@ export default function ContactSection() {
                                     type="text"
                                     name="name"
                                     className="w-full bg-white border border-black/[0.03] rounded-xl px-6 py-5 focus:ring-1 focus:ring-gold-start focus:border-gold-start outline-none transition-all font-light text-sm shadow-sm"
-                                    placeholder="Alexander Sterling"
+                                    placeholder={t.checkout.placeholder_name}
                                 />
                             </div>
 
@@ -129,7 +129,7 @@ export default function ContactSection() {
                                     type="email"
                                     name="email"
                                     className="w-full bg-white border border-black/[0.03] rounded-xl px-6 py-5 focus:ring-1 focus:ring-gold-start focus:border-gold-start outline-none transition-all font-light text-sm shadow-sm"
-                                    placeholder="alexander@luxury.com"
+                                    placeholder={t.checkout.placeholder_email}
                                 />
                             </div>
 

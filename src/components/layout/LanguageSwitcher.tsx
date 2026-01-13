@@ -20,7 +20,7 @@ const LanguageSwitcher = () => {
     };
 
     return (
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
                 <Button
                     variant="ghost"
@@ -31,7 +31,7 @@ const LanguageSwitcher = () => {
                     <span className="uppercase font-medium text-xs">{language}</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-white border-gold-start/20">
+            <DropdownMenuContent align="end" className="bg-white border-gold-start/20 z-[1001]">
                 <DropdownMenuItem
                     className="cursor-pointer hover:bg-gold-start/5 focus:bg-gold-start/5"
                     onClick={() => handleLanguageChange("en")}

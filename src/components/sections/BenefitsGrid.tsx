@@ -63,14 +63,14 @@ const BenefitsGrid = () => {
     };
 
     return (
-        <section className="py-24 bg-white">
+        <section className="py-16 md:py-24 bg-white">
             <div className="container mx-auto px-6">
-                <div className="text-center mb-20 space-y-4">
+                <div className="text-center mb-12 md:mb-20 space-y-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.5 }}
-                        className="text-4xl md:text-5xl font-serif text-charcoal uppercase"
+                        className="text-3xl md:text-5xl font-serif text-charcoal uppercase"
                     >
                         {t.benefits.title} <br />
                         <span className="text-gold-gradient">{t.benefits.subtitle}</span>
@@ -82,7 +82,7 @@ const BenefitsGrid = () => {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.2, margin: "-100px" }}
+                    viewport={{ once: true, amount: 0.1 }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     {benefits.map((benefit, index) => (

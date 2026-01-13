@@ -24,6 +24,17 @@ const Navbar = () => {
     const router = useRouter();
 
     useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isMobileMenuOpen]);
+
+    useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
         };
@@ -100,7 +111,7 @@ const Navbar = () => {
     return (
         <>
             <nav
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
                     }`}
             >
                 <div className={`container mx-auto px-6 flex items-center justify-between transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
@@ -218,138 +229,137 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Mobile Menu Overlay */}
-                <AnimatePresence>
-                    {isMobileMenuOpen && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-[100] lg:hidden bg-white backdrop-blur-2xl noise-overlay flex flex-col"
-                        >
-                            {/* Decorative Background Element */}
-                            <div className="absolute top-1/4 -right-20 w-80 h-80 bg-gold-mid/10 blur-[100px] rounded-full pointer-events-none" />
-                            <div className="absolute bottom-1/4 -left-20 w-64 h-64 bg-[#DE9D9D]/10 blur-[100px] rounded-full pointer-events-none" />
-
-                            {/* Mobile Header */}
-                            <div className="flex items-center justify-between px-6 py-4 border-b border-alabaster/50 relative z-10">
-                                <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <div className="relative h-8 w-28">
-                                        <Image src="/logo.png" alt="Logo" fill className="object-contain" />
-                                    </div>
-                                </Link>
-                                <button
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="p-2 hover:bg-gold-start/10 rounded-full transition-colors"
-                                >
-                                    <X size={20} className="text-charcoal" />
-                                </button>
-                            </div>
-
-                            <div className="flex-1 overflow-y-auto px-6 py-10 flex flex-col relative z-10">
-                                {/* Navigation Links */}
-                                <div className="space-y-8 mb-12">
-                                    {navLinks.map((link, idx) => (
-                                        <motion.div
-                                            key={link.name}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{
-                                                delay: idx * 0.05,
-                                                duration: 0.5,
-                                                ease: [0.16, 1, 0.3, 1]
-                                            }}
-                                        >
-                                            <a
-                                                href={link.href}
-                                                onClick={(e) => scrollToSection(e, link.href)}
-                                                className={`text-2xl font-serif block transition-all ${activeSection === link.id
-                                                    ? "text-gold-end translate-x-3"
-                                                    : "text-charcoal hover:text-gold-end hover:translate-x-1"
-                                                    }`}
-                                            >
-                                                {link.name}
-                                            </a>
-
-                                            {link.id === "products" && (
-                                                <motion.div
-                                                    initial={{ opacity: 0, height: 0 }}
-                                                    animate={{ opacity: 1, height: "auto" }}
-                                                    className="flex flex-col gap-4 pl-4 mt-4 border-l-2 border-gold-start/20"
-                                                >
-                                                    <Link
-                                                        href="/products/bioactive-collagen"
-                                                        onClick={() => setIsMobileMenuOpen(false)}
-                                                        className="flex flex-col gap-1 active:opacity-70"
-                                                    >
-                                                        <span className="text-base font-serif text-charcoal">{t.products.items.bioactive.name}</span>
-                                                        <span className="text-[9px] text-charcoal/40 uppercase tracking-widest font-bold">{t.products.items.bioactive.info}</span>
-                                                    </Link>
-                                                    <Link
-                                                        href="/products/fish-collagen"
-                                                        onClick={() => setIsMobileMenuOpen(false)}
-                                                        className="flex flex-col gap-1 active:opacity-70"
-                                                    >
-                                                        <span className="text-base font-serif text-charcoal">{t.products.items.fish.name}</span>
-                                                        <span className="text-[9px] text-charcoal/40 uppercase tracking-widest font-bold">{t.products.items.fish.info}</span>
-                                                    </Link>
-                                                </motion.div>
-                                            )}
-                                        </motion.div>
-                                    ))}
-                                </div>
-
-                                {/* Utility Section */}
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.4 }}
-                                    className="mt-auto space-y-8"
-                                >
-                                    {/* Action Button */}
-                                    <Button
-                                        asChild
-                                        className="w-full h-12 bg-charcoal hover:bg-charcoal/90 text-white font-bold uppercase tracking-[0.2em] text-[10px] rounded-xl shadow-xl flex items-center justify-between px-6 group"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                    >
-                                        <a href="#contact" onClick={(e: any) => scrollToSection(e, "#contact")}>
-                                            {t.nav.contact}
-                                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                                        </a>
-                                    </Button>
-
-                                    {/* Contact & Socials */}
-                                    <div className="grid grid-cols-2 gap-6 items-end">
-                                        <div className="space-y-3">
-                                            <p className="text-[9px] text-charcoal/30 uppercase tracking-[0.3em] font-bold">{t.contact.priority_support}</p>
-                                            <div className="space-y-2">
-                                                <a href={`mailto:${t.contact.office_email}`} className="flex items-center gap-2 text-xs text-charcoal/60 hover:text-gold-end transition-colors">
-                                                    <Mail size={14} />
-                                                    <span className="truncate">{t.contact.office_email}</span>
-                                                </a>
-                                                <a href={`tel:${t.contact.phone}`} className="flex items-center gap-2 text-xs text-charcoal/60 hover:text-gold-end transition-colors">
-                                                    <Phone size={14} />
-                                                    <span>{t.contact.phone}</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex justify-end gap-3">
-                                            <a href="#" className="w-10 h-10 bg-alabaster rounded-full flex items-center justify-center text-charcoal hover:bg-gold-gradient hover:text-white transition-all shadow-sm">
-                                                <Instagram size={18} />
-                                            </a>
-                                            <a href="#" className="w-10 h-10 bg-alabaster rounded-full flex items-center justify-center text-charcoal hover:bg-gold-gradient hover:text-white transition-all shadow-sm">
-                                                <Facebook size={18} />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </nav>
+            {/* Mobile Menu Overlay - Move out of nav to ensure true full-screen fixed positioning */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed top-0 left-0 w-full h-full z-[120] lg:hidden bg-white backdrop-blur-2xl noise-overlay flex flex-col"
+                    >
+                        {/* Decorative Background Element */}
+                        <div className="absolute top-1/4 -right-20 w-80 h-80 bg-gold-mid/10 blur-[100px] rounded-full pointer-events-none" />
+                        <div className="absolute bottom-1/4 -left-20 w-64 h-64 bg-[#DE9D9D]/10 blur-[100px] rounded-full pointer-events-none" />
 
+                        {/* Mobile Header */}
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-alabaster/50 relative z-10 w-full">
+                            <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                                <div className="relative h-8 w-28">
+                                    <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+                                </div>
+                            </Link>
+                            <button
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="p-2 hover:bg-gold-start/10 rounded-full transition-colors"
+                            >
+                                <X size={20} className="text-charcoal" />
+                            </button>
+                        </div>
+
+                        <div className="flex-1 overflow-y-auto px-6 py-10 flex flex-col relative z-10">
+                            {/* Navigation Links */}
+                            <div className="space-y-8 mb-12">
+                                {navLinks.map((link, idx) => (
+                                    <motion.div
+                                        key={link.name}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{
+                                            delay: idx * 0.05,
+                                            duration: 0.5,
+                                            ease: [0.16, 1, 0.3, 1]
+                                        }}
+                                    >
+                                        <a
+                                            href={link.href}
+                                            onClick={(e) => scrollToSection(e, link.href)}
+                                            className={`text-2xl font-serif block transition-all ${activeSection === link.id
+                                                ? "text-gold-end translate-x-3"
+                                                : "text-charcoal hover:text-gold-end hover:translate-x-1"
+                                                }`}
+                                        >
+                                            {link.name}
+                                        </a>
+
+                                        {link.id === "products" && (
+                                            <motion.div
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: "auto" }}
+                                                className="flex flex-col gap-4 pl-4 mt-4 border-l-2 border-gold-start/20"
+                                            >
+                                                <Link
+                                                    href="/products/bioactive-collagen"
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                    className="flex flex-col gap-1 active:opacity-70"
+                                                >
+                                                    <span className="text-base font-serif text-charcoal">{t.products.items.bioactive.name}</span>
+                                                    <span className="text-[9px] text-charcoal/40 uppercase tracking-widest font-bold">{t.products.items.bioactive.info}</span>
+                                                </Link>
+                                                <Link
+                                                    href="/products/fish-collagen"
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                    className="flex flex-col gap-1 active:opacity-70"
+                                                >
+                                                    <span className="text-base font-serif text-charcoal">{t.products.items.fish.name}</span>
+                                                    <span className="text-[9px] text-charcoal/40 uppercase tracking-widest font-bold">{t.products.items.fish.info}</span>
+                                                </Link>
+                                            </motion.div>
+                                        )}
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* Utility Section */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="mt-auto space-y-8"
+                            >
+                                {/* Action Button */}
+                                <Button
+                                    asChild
+                                    className="w-full h-12 bg-charcoal hover:bg-charcoal/90 text-white font-bold uppercase tracking-[0.2em] text-[10px] rounded-xl shadow-xl flex items-center justify-between px-6 group"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    <a href="#contact" onClick={(e: any) => scrollToSection(e, "#contact")}>
+                                        {t.nav.contact}
+                                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                    </a>
+                                </Button>
+
+                                {/* Contact & Socials */}
+                                <div className="grid grid-cols-2 gap-6 items-end">
+                                    <div className="space-y-3">
+                                        <p className="text-[9px] text-charcoal/30 uppercase tracking-[0.3em] font-bold">{t.contact.priority_support}</p>
+                                        <div className="space-y-2">
+                                            <a href={`mailto:${t.contact.office_email}`} className="flex items-center gap-2 text-xs text-charcoal/60 hover:text-gold-end transition-colors">
+                                                <Mail size={14} />
+                                                <span className="truncate">{t.contact.office_email}</span>
+                                            </a>
+                                            <a href={`tel:${t.contact.phone}`} className="flex items-center gap-2 text-xs text-charcoal/60 hover:text-gold-end transition-colors">
+                                                <Phone size={14} />
+                                                <span>{t.contact.phone}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-end gap-3">
+                                        <a href="#" className="w-10 h-10 bg-alabaster rounded-full flex items-center justify-center text-charcoal hover:bg-gold-gradient hover:text-white transition-all shadow-sm">
+                                            <Instagram size={18} />
+                                        </a>
+                                        <a href="#" className="w-10 h-10 bg-alabaster rounded-full flex items-center justify-center text-charcoal hover:bg-gold-gradient hover:text-white transition-all shadow-sm">
+                                            <Facebook size={18} />
+                                        </a>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
             <QuickCart />
         </>
     );

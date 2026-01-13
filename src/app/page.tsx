@@ -8,7 +8,6 @@ import RitualSection from "@/components/sections/RitualSection";
 import IngredientsSection from "@/components/sections/IngredientsSection";
 import PhilosophySection from "@/components/sections/PhilosophySection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import SustainabilitySection from "@/components/sections/SustainabilitySection";
 import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/layout/Footer";
@@ -27,7 +26,6 @@ export default function Home() {
       <IngredientsSection />
       <TestimonialsSection />
       <PhilosophySection />
-      <SustainabilitySection />
       <FAQSection />
       <ContactSection />
       <Footer />

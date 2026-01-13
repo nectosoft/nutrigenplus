@@ -23,8 +23,15 @@
     --foreground: #1A1A1A;
   }
 
+  html {
+    /* Prevent layout shifts globally */
+    scrollbar-gutter: stable;
+  }
+
   body {
     @apply bg-white text-charcoal font-sans;
+    /* Ensure body doesn't cause overflow-x issues */
+    overflow-x: hidden;
   }
 
   h1,
@@ -56,7 +63,7 @@
   }
 
   .noise-overlay {
-    position: relative;
+    /* Position should be handled by the element using this utility (fixed/absolute/relative) */
   }
 
   .noise-overlay::before {

@@ -35,14 +35,14 @@ const TestimonialsSection = () => {
     };
 
     return (
-        <section id="testimonials" className="py-24 bg-alabaster relative overflow-hidden">
+        <section id="testimonials" className="py-16 md:py-24 bg-alabaster relative overflow-hidden">
             <div className="container mx-auto px-6">
-                <div className="text-center mb-20 space-y-4">
+                <div className="text-center mb-12 md:mb-20 space-y-4">
                     <motion.span
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true, amount: 0.5 }}
-                        className="text-gold-end font-bold tracking-[0.3em] uppercase text-[10px]"
+                        className="text-gold-end font-bold tracking-[0.3em] uppercase text-xs"
                     >
                         {t.testimonials.subtitle}
                     </motion.span>
@@ -60,7 +60,7 @@ const TestimonialsSection = () => {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.2, margin: "-100px" }}
+                    viewport={{ once: true, amount: 0.1 }}
                     className="grid grid-cols-1 md:grid-cols-3 gap-12"
                 >
                     {voices.map((voice, index) => (
@@ -78,7 +78,7 @@ const TestimonialsSection = () => {
                                     <p className="text-gold-end font-bold text-sm uppercase tracking-widest">
                                         {voice.author.split(",")[0]}
                                     </p>
-                                    <p className="text-[10px] text-charcoal/40 uppercase tracking-widest">
+                                    <p className="text-xs text-charcoal/40 uppercase tracking-widest">
                                         {voice.author.split(",")[1]}
                                     </p>
                                 </div>

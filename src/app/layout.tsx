@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 
 import { TranslationProvider } from "@/context/translation-context";
 import { CartProvider } from "@/context/cart-context";
+import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 
 export default function RootLayout({
@@ -31,12 +32,14 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-white text-charcoal`}
       >
-        <TranslationProvider>
-          <CartProvider>
-            {children}
-            <Toaster position="top-center" richColors />
-          </CartProvider>
-        </TranslationProvider>
+        <SessionProvider>
+          <TranslationProvider>
+            <CartProvider>
+              {children}
+              <Toaster position="top-center" richColors />
+            </CartProvider>
+          </TranslationProvider>
+        </SessionProvider>
       </body>
     </html>
   );

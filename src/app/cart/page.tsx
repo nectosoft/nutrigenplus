@@ -140,7 +140,7 @@ const CartPage = () => {
                                     </div>
                                     <div className="flex justify-between text-charcoal/60">
                                         <span>{t.cart.shipping}</span>
-                                        <span className="text-gold-end font-medium italic">{t.cart.free}</span>
+                                        <span className="text-charcoal/40 font-medium italic">{t.cart.free}</span>
                                     </div>
                                     <div className="pt-4 border-t border-gold-start/10 flex justify-between items-end">
                                         <span className="text-xl font-serif text-charcoal">{t.cart.total}</span>

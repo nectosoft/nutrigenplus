@@ -17,6 +17,8 @@ const QuickCart = () => {
         removeFromCart,
         updateQuantity,
         cartTotal,
+        subtotal,
+        bundleDiscount,
         cartCount
     } = useCart();
     const { t } = useTranslation();
@@ -134,8 +136,14 @@ const QuickCart = () => {
                                     <div className="space-y-2">
                                         <div className="flex justify-between text-sm text-charcoal/60">
                                             <span>{t.cart.subtotal}</span>
-                                            <span>{cart[0].price.replace(/[\d.,]+/, cartTotal.toFixed(2))}</span>
+                                            <span>{cart[0].price.replace(/[\d.,]+/, subtotal.toFixed(2))}</span>
                                         </div>
+                                        {bundleDiscount > 0 && (
+                                            <div className="flex justify-between text-sm text-gold-end font-medium">
+                                                <span>Promo Package (10%)</span>
+                                                <span>-{cart[0].price.replace(/[\d.,]+/, bundleDiscount.toFixed(2))}</span>
+                                            </div>
+                                        )}
                                         <div className="flex justify-between text-sm text-charcoal/60">
                                             <span>{t.cart.shipping}</span>
                                             <span className="text-gold-end italic">{t.cart.free}</span>

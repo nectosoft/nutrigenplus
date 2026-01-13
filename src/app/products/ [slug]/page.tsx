@@ -37,8 +37,8 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
         return (
             <div className="min-h-screen flex items-center justify-center bg-alabaster">
                 <div className="text-center space-y-4">
-                    <h1 className="text-4xl font-serif text-charcoal">Product Not Found</h1>
-                    <Link href="/#shop" className="text-gold-end hover:underline block">Return to Shop</Link>
+                    <h1 className="text-4xl font-serif text-charcoal">{t.common.not_found}</h1>
+                    <Link href="/#shop" className="text-gold-end hover:underline block">{t.common.return_shop}</Link>
                 </div>
             </div>
         );
@@ -76,7 +76,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             {/* Breadcrumb */}
             <nav className="pt-32 pb-8 px-6 max-w-7xl mx-auto">
                 <div className="flex items-center gap-2 text-sm text-charcoal/40 font-medium tracking-wide">
-                    <Link href="/" className="hover:text-gold-end transition-colors uppercase">Home</Link>
+                    <Link href="/" className="hover:text-gold-end transition-colors uppercase">{t.common.home}</Link>
                     <ChevronRight size={14} />
                     <Link href="/#shop" className="hover:text-gold-end transition-colors uppercase">{t.nav.shop}</Link>
                     <ChevronRight size={14} />
@@ -127,7 +127,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                             {[...Array(5)].map((_, i) => (
                                 <Star key={i} size={18} className="text-gold-start fill-gold-start" />
                             ))}
-                            <span className="text-sm text-charcoal/40 ml-2 font-serif italic">Verified Excellence</span>
+                            <span className="text-sm text-charcoal/40 ml-2 font-serif italic">{t.products.excellence}</span>
                         </div>
 
                         <h1 className="text-5xl lg:text-7xl font-serif text-charcoal leading-[1.1]">
@@ -158,8 +158,8 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                             </Button>
 
                             <div className="flex items-center justify-center gap-6 text-xs text-charcoal/40 uppercase tracking-widest pt-4">
-                                <span className="flex items-center gap-2"><ShieldCheck size={14} className="text-gold-start" /> Pharmaceutical Grade</span>
-                                <span className="flex items-center gap-2"><Droplets size={14} className="text-gold-start" /> Absolute Purity</span>
+                                <span className="flex items-center gap-2"><ShieldCheck size={14} className="text-gold-start" /> {t.products.pharmaceutical}</span>
+                                <span className="flex items-center gap-2"><Droplets size={14} className="text-gold-start" /> {t.products.purity}</span>
                             </div>
                         </div>
                     </motion.div>
@@ -167,8 +167,8 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                     {/* Scientific Blueprint */}
                     <div className="space-y-8 pt-12 border-t border-alabaster">
                         <div className="space-y-2">
-                            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-gold-end">Scientific Blueprint</h2>
-                            <p className="text-3xl font-serif text-charcoal">Molecular Components</p>
+                            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-gold-end">{t.products.blueprint}</h2>
+                            <p className="text-3xl font-serif text-charcoal">{t.products.molecular}</p>
                         </div>
 
                         <div className="grid gap-6">
@@ -209,7 +209,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                         whileInView={{ opacity: 1, scale: 1 }}
                         className="space-y-8"
                     >
-                        <h2 className="text-xs font-bold uppercase tracking-[0.5em] text-gold-start">The Molecular Philosophy</h2>
+                        <h2 className="text-xs font-bold uppercase tracking-[0.5em] text-gold-start">{t.products.philosophy}</h2>
                         <p className="text-3xl lg:text-5xl font-serif leading-tight">
                             "{product.longDescription}"
                         </p>
@@ -275,7 +275,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             <div className="pb-32 px-6 flex justify-center">
                 <Link href="/#shop">
                     <Button variant="outline" className="h-14 px-10 rounded-full border-alabaster text-charcoal/40 uppercase tracking-widest text-xs hover:border-gold-start hover:text-gold-end transition-all">
-                        <ArrowLeft size={14} className="mr-2" /> Back to Collection
+                        <ArrowLeft size={14} className="mr-2" /> {t.common.back_collection}
                     </Button>
                 </Link>
             </div>

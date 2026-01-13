@@ -93,7 +93,16 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                             animate={{ opacity: 1, scale: 1 }}
                             className="relative aspect-square flex items-center justify-center group max-w-2xl mx-auto lg:mx-0"
                         >
-                            <div className="absolute inset-x-0 bottom-0 top-1/4 bg-gold-gradient/5 rounded-full blur-3xl opacity-50" />
+                            {/* Molecular Aura & Accents - Replacing "bad" glows */}
+                            <div className="absolute inset-x-0 bottom-0 top-1/4 bg-gold-gradient/5 rounded-full blur-[120px] opacity-40 -z-10" />
+
+                            <motion.div
+                                animate={{ y: [0, -20, 0], rotate: [5, 15, 5] }}
+                                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute -top-10 -right-10 w-32 h-32 rounded-full border border-gold-start/10 glass-premium backdrop-blur-sm hidden lg:block"
+                            >
+                                <div className="absolute inset-4 border border-gold-start/5 rounded-full bg-gradient-to-tr from-white/5 to-transparent" />
+                            </motion.div>
                             <Image
                                 src={imagePath}
                                 alt={product.name}

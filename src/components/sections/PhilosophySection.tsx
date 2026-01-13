@@ -21,7 +21,7 @@ const PhilosophySection = () => {
         <section
             id="philosophy"
             ref={containerRef}
-            className="py-40 bg-[#fdfdfd] relative overflow-hidden"
+            className="py-20 bg-[#fdfdfd] relative overflow-hidden"
         >
             {/* Artistic Background Element */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden opacity-[0.03]">
@@ -52,11 +52,11 @@ const PhilosophySection = () => {
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, amount: 0.5, margin: "-100px" }}
+                            viewport={{ once: true, amount: 0.1 }}
                             className="absolute -right-8 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-white max-w-[200px] hidden lg:block"
                         >
                             <div className="h-0.5 w-12 bg-[#DE9D9D] mb-6" />
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold mb-2">{t.philosophy.molecular_standard}</p>
+                            <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold mb-2">{t.philosophy.molecular_standard}</p>
                             <p className="text-sm font-serif italic text-charcoal">{t.philosophy.quote}</p>
                         </motion.div>
                     </div>
@@ -70,7 +70,7 @@ const PhilosophySection = () => {
                                 viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                                 className="inline-flex items-center gap-6"
                             >
-                                <span className="text-[#DE9D9D] font-bold tracking-[0.5em] text-[10px] uppercase">
+                                <span className="text-[#DE9D9D] font-bold tracking-[0.2em] text-xs uppercase">
                                     {t.philosophy.subtitle}
                                 </span>
                             </motion.div>
@@ -80,7 +80,7 @@ const PhilosophySection = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.5, margin: "-100px" }}
                                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-                                className="text-6xl md:text-8xl font-serif text-charcoal leading-[0.9] tracking-tight"
+                                className="text-4xl md:text-6xl lg:text-8xl font-serif text-charcoal leading-[0.9] tracking-tight"
                             >
                                 {t.philosophy.title}
                             </motion.h2>
@@ -105,7 +105,7 @@ const PhilosophySection = () => {
                                 className="relative pl-12"
                             >
                                 <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#DE9D9D] to-transparent" />
-                                <p className="text-md md:text-lg text-gray-400 font-light leading-loose uppercase tracking-[0.1em]">
+                                <p className="text-md md:text-lg text-gray-400 font-light leading-loose uppercase tracking-wide">
                                     {t.about.mission.text2}
                                 </p>
                             </motion.div>
@@ -126,11 +126,11 @@ const PhilosophySection = () => {
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, amount: 0.5, margin: "-100px" }}
-                            className="flex items-center gap-8 pt-8"
+                            className="flex items-center justify-center lg:justify-start gap-8 pt-4 md:pt-8"
                         >
-                            <div className="w-20 h-20 rounded-full border border-black/5 flex items-center justify-center relative">
-                                <div className="absolute w-14 h-14 border border-[#DE9D9D]/20 rounded-full animate-spin-slow" />
-                                <span className="text-[8px] uppercase tracking-tighter text-gray-300">{t.philosophy.certified}</span>
+                            <div className="w-24 h-24 rounded-full border border-black/5 flex items-center justify-center relative bg-white/50 backdrop-blur-sm shadow-sm">
+                                <div className="absolute w-16 h-16 border border-[#DE9D9D]/20 rounded-full animate-spin-slow" />
+                                <span className="text-[10px] uppercase tracking-normal text-gray-400 font-bold text-center px-4 leading-tight">{t.philosophy.certified}</span>
                             </div>
                         </motion.div>
                     </div>
@@ -138,12 +138,12 @@ const PhilosophySection = () => {
                 </div>
 
                 {/* What Sets Us Apart & Trust Icons Section */}
-                <div className="mt-40 pt-40 border-t border-black/[0.03]">
+                <div className="mt-12 md:mt-20 pt-12 md:pt-20 border-t border-black/[0.03]">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
                         {/* What Sets Us Apart */}
                         <div className="lg:col-span-8 space-y-16">
                             <div className="space-y-4">
-                                <span className="text-[#DE9D9D] font-bold tracking-[0.5em] text-[10px] uppercase">
+                                <span className="text-[#DE9D9D] font-bold tracking-[0.2em] text-xs uppercase">
                                     THE NUTRIGEN+ DIFFERENCE
                                 </span>
                                 <h3 className="text-4xl md:text-5xl font-serif text-charcoal">
@@ -162,12 +162,12 @@ const PhilosophySection = () => {
                                         className="space-y-4"
                                     >
                                         <div className="flex items-center gap-4">
-                                            <div className="w-8 h-8 rounded-full border border-[#DE9D9D]/20 flex items-center justify-center text-[10px] font-bold text-[#DE9D9D]">
+                                            <div className="w-8 h-8 rounded-full border border-[#DE9D9D]/20 flex items-center justify-center text-xs font-bold text-[#DE9D9D]">
                                                 0{idx + 1}
                                             </div>
                                             <h4 className="text-lg font-serif text-charcoal">{item.title}</h4>
                                         </div>
-                                        <p className="text-gray-400 text-sm leading-relaxed pl-12">
+                                        <p className="text-gray-400 text-sm md:text-base leading-relaxed pl-12">
                                             {item.desc}
                                         </p>
                                     </motion.div>
@@ -178,7 +178,7 @@ const PhilosophySection = () => {
                         {/* Trust Icons */}
                         <div className="lg:col-span-4 lg:pl-12">
                             <div className="bg-alabaster/50 p-12 rounded-[2.5rem] border border-white space-y-12">
-                                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+                                <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">
                                     Our Guarantee
                                 </h4>
                                 <div className="space-y-10">
@@ -194,7 +194,7 @@ const PhilosophySection = () => {
                                             <div className="w-5 h-5 mt-1 rounded-full bg-gold-gradient shadow-lg" />
                                             <div>
                                                 <h5 className="text-sm font-bold text-charcoal uppercase tracking-widest">{icon.title}</h5>
-                                                <p className="text-[11px] text-gray-400 mt-1 uppercase tracking-tighter">{icon.desc}</p>
+                                                <p className="text-xs text-gray-400 mt-1 uppercase tracking-tighter">{icon.desc}</p>
                                             </div>
                                         </motion.div>
                                     ))}

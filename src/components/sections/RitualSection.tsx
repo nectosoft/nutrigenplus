@@ -26,11 +26,11 @@ const RitualSection = () => {
     ];
 
     return (
-        <section id="ritual" className="py-32 bg-charcoal text-white relative overflow-hidden">
+        <section id="ritual" className="py-16 md:py-32 bg-charcoal text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-1/3 h-full bg-gold-gradient/5 skew-x-12 translate-x-1/2 -z-0" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-40">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center mb-20 md:mb-40">
                     <div className="space-y-8">
                         <div className="space-y-4">
                             <motion.span
@@ -45,7 +45,7 @@ const RitualSection = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.2, margin: "-100px" }}
-                                className="text-4xl md:text-5xl font-serif text-white italic"
+                                className="text-3xl md:text-5xl font-serif text-white italic"
                             >
                                 {t.ritual.title}
                             </motion.h2>
@@ -82,12 +82,12 @@ const RitualSection = () => {
                 </div>
 
                 {/* Recipe Gallery */}
-                <div className="space-y-20">
+                <div className="space-y-12 md:space-y-20">
                     <div className="text-center space-y-6">
-                        <span className="text-gold-end font-bold tracking-[0.6em] text-[10px] uppercase">
+                        <span className="text-gold-end font-bold tracking-[0.6em] text-xs uppercase">
                             {t.recipes.subtitle}
                         </span>
-                        <h2 className="text-4xl md:text-6xl font-serif italic">{t.recipes.title}</h2>
+                        <h2 className="text-3xl md:text-6xl font-serif italic">{t.recipes.title}</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -103,16 +103,16 @@ const RitualSection = () => {
                                 <div className="space-y-8">
                                     <div className="space-y-4">
                                         <h4 className="text-lg font-serif italic text-gold-mid">{recipe.title}</h4>
-                                        <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">{recipe.desc}</p>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-white/40 font-bold">{recipe.desc}</p>
                                     </div>
                                     <div className="space-y-4 text-xs leading-relaxed text-white/50 group-hover:text-white/70 transition-colors">
                                         <div className="space-y-1">
-                                            <span className="text-[8px] uppercase font-bold text-gold-mid/40">Ingredients</span>
-                                            <p>{recipe.ingredients}</p>
+                                            <span className="text-[10px] uppercase font-bold text-gold-mid/40">{t.ritual.ingredients_label}</span>
+                                            <p className="text-sm">{recipe.ingredients}</p>
                                         </div>
                                         <div className="space-y-1">
-                                            <span className="text-[8px] uppercase font-bold text-gold-mid/40">Method</span>
-                                            <p>{recipe.method}</p>
+                                            <span className="text-[10px] uppercase font-bold text-gold-mid/40">{t.ritual.method_label}</span>
+                                            <p className="text-sm">{recipe.method}</p>
                                         </div>
                                     </div>
                                 </div>

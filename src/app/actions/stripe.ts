@@ -7,7 +7,7 @@ import { headers } from "next/headers";
 
 import { CartItem } from "@/context/cart-context";
 
-export async function createCheckoutSession(items: CartItem[]): Promise<{ url?: string; error?: string }> {
+export async function createCheckoutSession(items: CartItem[], shippingFee: number = 0): Promise<{ url?: string; error?: string }> {
     // 1. Validate environment
     const secretKey = process.env.STRIPE_SECRET_KEY;
     if (!secretKey) {
@@ -29,34 +29,45 @@ export async function createCheckoutSession(items: CartItem[]): Promise<{ url?: 
         console.log("[Stripe] Initiating session. Items:", items.length, "Origin:", origin);
 
         // 3. Create Session
+        const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
+        const discountFactor = totalQuantity >= 2 ? 0.9 : 1.0;
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
-            line_items: items.map((item) => {
-                // Ensure price is valid
-                const amount = Math.round((item.numericPrice || 0) * 100);
-                if (amount <= 0) {
-                    throw new Error(`Invalid price for item: ${item.name}`);
-                }
-
-                // Ensure image is absolute
-                let imageUrl = item.image || "";
-                if (imageUrl && !imageUrl.startsWith('http')) {
-                    imageUrl = `${origin}${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
-                }
-
-                return {
+            line_items: [
+                ...items.map((item) => {
+                    const amount = Math.round((item.numericPrice || 0) * discountFactor * 100);
+                    if (amount <= 0) {
+                        throw new Error(`Invalid price for item: ${item.name}`);
+                    }
+                    let imageUrl = item.image || "";
+                    if (imageUrl && !imageUrl.startsWith('http')) {
+                        imageUrl = `${origin}${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
+                    }
+                    return {
+                        price_data: {
+                            currency: "eur",
+                            product_data: {
+                                name: item.name || "Product",
+                                description: item.info || "",
+                                images: imageUrl ? [imageUrl] : [],
+                            },
+                            unit_amount: amount,
+                        },
+                        quantity: item.quantity || 1,
+                    };
+                }),
+                ...(shippingFee > 0 ? [{
                     price_data: {
                         currency: "eur",
                         product_data: {
-                            name: item.name || "Product",
-                            description: item.info || "",
-                            images: imageUrl ? [imageUrl] : [],
+                            name: "Shipping Fee",
                         },
-                        unit_amount: amount,
+                        unit_amount: Math.round(shippingFee * 100),
                     },
-                    quantity: item.quantity || 1,
-                };
-            }),
+                    quantity: 1,
+                }] : [])
+            ],
             mode: "payment",
             shipping_address_collection: {
                 allowed_countries: [

@@ -3,10 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Instagram, Facebook, Phone, MapPin } from "lucide-react";
+import { Mail, Instagram, Facebook, Phone, MapPin, ShieldCheck, ClipboardList } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/context/translation-context";
+import { useSession } from "next-auth/react";
 
 // Custom TikTok Icon
 const TikTokIcon = ({ size = 20 }: { size?: number }) => (
@@ -26,6 +27,7 @@ const TikTokIcon = ({ size = 20 }: { size?: number }) => (
 
 const Footer = () => {
     const { t } = useTranslation();
+    const { data: session } = useSession();
 
     const socialLinks = [
         { icon: <Instagram size={18} />, href: `https://instagram.com/${t.contact.socials.instagram}`, label: "Instagram" },
@@ -34,12 +36,12 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="bg-[#1a1a1a] text-alabaster pt-24 pb-12 overflow-hidden relative">
+        <footer className="bg-[#1a1a1a] text-alabaster pt-16 md:pt-24 pb-12 overflow-hidden relative">
             {/* Background Grain/Noise or subtle gradient */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.png')]" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 md:gap-16 mb-16 md:mb-20">
 
                     {/* Column 1: Brand Identity */}
                     <div className="md:col-span-4 space-y-8">
@@ -128,12 +130,26 @@ const Footer = () => {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.2em] text-white/10 font-bold">
-                    <p>© 2026 NutriGen+ Laboratories. {t.footer.rights}</p>
-                    <div className="flex gap-8">
+                <div className="pt-8 md:pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.2em] text-white/10 font-bold">
+                    <p>© 2026 NutriGen+. {t.footer.rights}</p>
+                    <div className="flex gap-8 items-center">
                         <Link href="/privacy" className="hover:text-white/40 transition-colors">{t.footer.privacy}</Link>
                         <Link href="/terms" className="hover:text-white/40 transition-colors">{t.footer.terms}</Link>
+
+                        {/* Admin Access Points */}
+                        <div className="flex gap-4 border-l border-white/5 pl-8">
+                            {session ? (
+                                <Link href="/admin/orders" className="flex items-center gap-2 text-[#DE9D9D] hover:text-white transition-colors">
+                                    <ClipboardList size={12} />
+                                    <span>{t.footer.orders_log}</span>
+                                </Link>
+                            ) : (
+                                <Link href="/auth/login" className="flex items-center gap-2 text-white/20 hover:text-[#DE9D9D] transition-colors">
+                                    <ShieldCheck size={12} />
+                                    <span>{t.footer.admin_access}</span>
+                                </Link>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

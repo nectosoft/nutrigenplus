@@ -32,7 +32,7 @@ const Hero = () => {
                         >
                             {t.hero.tagline}
                         </motion.span>
-                        <h1 className="text-4xl md:text-6xl font-serif text-charcoal leading-[1.15] tracking-tight">
+                        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif text-charcoal leading-[1.15] tracking-tight">
                             {t.hero.title_part1} <br />
                             <span className="text-gold-gradient italic">{t.hero.title_italic}</span>
                         </h1>
@@ -42,26 +42,11 @@ const Hero = () => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 w-full sm:w-auto">
-                        <Button
-                            size="lg"
-                            className="bg-gold-gradient text-white border-none px-12 h-14 rounded-xl text-[10px] uppercase tracking-[0.4em] font-bold hover:scale-105 transition-all duration-700 shadow-xl group w-full sm:w-auto"
-                            onClick={() => {
-                                const element = document.getElementById("shop");
-                                if (element) {
-                                    const navHeight = 80;
-                                    const elementPosition = element.getBoundingClientRect().top;
-                                    const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-                                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                                }
-                            }}
-                        >
-                            {t.hero.shop_now}
-                            <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
+
                         <Button
                             variant="outline"
                             size="lg"
-                            className="border-gold-start/20 text-charcoal px-12 h-14 rounded-xl text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-gold-start/5 transition-all duration-500 w-full sm:w-auto"
+                            className="border-gold-start/20 text-charcoal px-12 h-14 rounded-xl text-xs uppercase tracking-[0.4em] font-bold hover:bg-gold-start/5 transition-all duration-500 w-full sm:w-auto"
                             onClick={() => {
                                 const element = document.getElementById("science");
                                 if (element) {
@@ -77,15 +62,26 @@ const Hero = () => {
                     </div>
 
                     {/* Trust badges */}
-                    <div className="flex items-center gap-8 pt-4 filter grayscale opacity-60">
-                        <div className="flex flex-col">
-                            <span className="text-xl font-bold">99%</span>
-                            <span className="text-[10px] uppercase tracking-wider">{t.hero.bioavailable}</span>
+                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 xs:gap-8 pt-4">
+                        <div className="flex flex-col items-center group">
+                            <span className="text-xl md:text-2xl font-bold text-charcoal/40 group-hover:text-gold-end transition-colors">100%</span>
+                            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-charcoal/30 group-hover:text-charcoal/50 transition-colors">{t.hero.bioavailable}</span>
                         </div>
-                        <div className="w-px h-8 bg-charcoal/10" />
-                        <div className="flex flex-col">
-                            <span className="text-xl font-bold">100%</span>
-                            <span className="text-[10px] uppercase tracking-wider">{t.hero.sustainable}</span>
+
+                        <div className="w-px h-10 bg-gold-start/20 hidden xs:block" />
+
+                        {/* Middle Standout Badge */}
+                        <div className="flex flex-col items-center px-6 py-3 rounded-2xl bg-gold-gradient/5 border border-gold-start/10 shadow-sm relative group overflow-hidden transition-all duration-500 hover:shadow-md hover:bg-gold-gradient/10">
+                            <div className="absolute inset-0 bg-gold-gradient opacity-0 group-hover:opacity-5 transition-opacity" />
+                            <span className="text-2xl md:text-3xl font-serif font-bold text-gold-end relative z-10 transition-transform group-hover:scale-105">100%</span>
+                            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-gold-end relative z-10">{t.hero.pure}</span>
+                        </div>
+
+                        <div className="w-px h-10 bg-gold-start/20 hidden xs:block" />
+
+                        <div className="flex flex-col items-center group">
+                            <span className="text-xl md:text-2xl font-bold text-charcoal/40 group-hover:text-gold-end transition-colors">100%</span>
+                            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-charcoal/30 group-hover:text-charcoal/50 transition-colors">{t.hero.sustainable}</span>
                         </div>
                     </div>
                 </motion.div>
@@ -102,24 +98,29 @@ const Hero = () => {
                         {/* Dynamic Radiance */}
                         <motion.div
                             animate={{
-                                opacity: [0.4, 0.6, 0.4],
-                                scale: [1, 1.1, 1],
+                                opacity: [0.3, 0.5, 0.3],
+                                scale: [1, 1.05, 1],
                             }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold-mid/20 blur-[120px] rounded-full -z-10"
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gold-mid/10 blur-[140px] rounded-full -z-10"
                         />
 
-                        {/* Floating Gold Dust */}
+                        {/* Molecular Lenses */}
                         <motion.div
-                            animate={{ y: [0, -30, 0], opacity: [0, 0.5, 0] }}
-                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute top-0 right-[20%] w-2 h-2 bg-gold-end rounded-full blur-[1px]"
-                        />
+                            animate={{ y: [0, -20, 0], rotate: [0, 10, 0], opacity: [0.4, 0.7, 0.4] }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute -top-[10%] right-[15%] w-24 h-24 rounded-full border border-gold-start/20 glass-premium backdrop-blur-sm hidden lg:block"
+                        >
+                            <div className="absolute inset-[15%] border border-gold-start/10 rounded-full bg-gradient-to-tr from-white/20 to-transparent" />
+                        </motion.div>
+
                         <motion.div
-                            animate={{ y: [0, 20, 0], opacity: [0, 0.3, 0] }}
-                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                            className="absolute bottom-[20%] left-[10%] w-3 h-3 bg-gold-start rounded-full blur-[2px]"
-                        />
+                            animate={{ y: [0, 30, 0], rotate: [0, -15, 0], opacity: [0.3, 0.6, 0.3] }}
+                            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="absolute bottom-[5%] left-[5%] w-32 h-32 rounded-full border border-gold-start/10 glass-premium backdrop-blur-md hidden lg:block"
+                        >
+                            <div className="absolute inset-[20%] border border-gold-start/5 rounded-full bg-gradient-to-bl from-white/10 to-transparent" />
+                        </motion.div>
                     </div>
 
                     {/* Decorative Platform */}

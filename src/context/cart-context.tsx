@@ -19,6 +19,8 @@ interface CartContextType {
     updateQuantity: (id: string, quantity: number) => void;
     clearCart: () => void;
     cartTotal: number;
+    subtotal: number;
+    bundleDiscount: number;
     cartCount: number;
     isCartOpen: boolean;
     setCartOpen: (open: boolean) => void;
@@ -73,8 +75,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const clearCart = () => setCart([]);
 
-    const cartTotal = cart.reduce((total, item) => total + item.numericPrice * item.quantity, 0);
+    const subtotal = cart.reduce((total, item) => total + item.numericPrice * item.quantity, 0);
     const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
+
+    // Bundle Offer Logic: 10% discount for 2 or more items (any combination)
+    const bundleDiscount = cartCount >= 2 ? subtotal * 0.10 : 0;
+    const cartTotal = subtotal - bundleDiscount;
 
     return (
         <CartContext.Provider
@@ -85,6 +91,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 updateQuantity,
                 clearCart,
                 cartTotal,
+                subtotal,
+                bundleDiscount,
                 cartCount,
                 isCartOpen,
                 setCartOpen,

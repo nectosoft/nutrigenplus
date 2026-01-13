@@ -1,0 +1,3 @@
+
+SPEEDY_USER=danimarinov777@gmail.com
+SPEEDY_PASS=Gamergame1
