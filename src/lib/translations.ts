@@ -430,6 +430,7 @@ export const translations = {
             description: "Reach out for personalized guidance on your longevity ritual. Our experts are here to assist with scientific inquiries or order support.",
             name: "Name",
             email: "Email",
+            message: "Message",
             send: "Send Message",
             success: "Message sent. Our team will contact you shortly.",
             error_generic: "Something went wrong. Please try again.",
