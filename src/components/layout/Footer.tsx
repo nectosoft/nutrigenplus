@@ -1,13 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Instagram, Facebook, Phone, MapPin, ShieldCheck, ClipboardList } from "lucide-react";
+import { Mail, Instagram, Facebook, Phone, MapPin, ShieldCheck, ClipboardList, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/context/translation-context";
 import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 // Custom TikTok Icon
 const TikTokIcon = ({ size = 20 }: { size?: number }) => (
@@ -28,12 +29,46 @@ const TikTokIcon = ({ size = 20 }: { size?: number }) => (
 const Footer = () => {
     const { t } = useTranslation();
     const { data: session } = useSession();
+    const [email, setEmail] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const socialLinks = [
         { icon: <Instagram size={18} />, href: `https://instagram.com/${t.contact.socials.instagram}`, label: "Instagram" },
         { icon: <Facebook size={18} />, href: `https://facebook.com/${t.contact.socials.facebook}`, label: "Facebook" },
         { icon: <TikTokIcon size={18} />, href: `https://tiktok.com/@${t.contact.socials.tiktok}`, label: "TikTok" },
     ];
+
+    const handleNewsletterSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+
+        setIsSubmitting(true);
+        const formData = new FormData();
+        formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "");
+        formData.append("email", email);
+        formData.append("subject", "New Newsletter Subscription - NutriGen+");
+        formData.append("from_name", "NutriGen+ Website");
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                toast.success(t.common.excellence || "Subscription successful!");
+                setEmail("");
+            } else {
+                toast.error(t.contact.error_generic);
+            }
+        } catch (error) {
+            toast.error(t.contact.error_connection);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <footer className="bg-[#1a1a1a] text-alabaster pt-16 md:pt-24 pb-12 overflow-hidden relative">
@@ -78,7 +113,7 @@ const Footer = () => {
                     <div className="md:col-span-2 space-y-6">
                         <h4 className="text-xs uppercase tracking-[0.3em] text-[#DE9D9D] font-medium">{t.footer.explore}</h4>
                         <ul className="space-y-4 text-sm text-alabaster/60 font-light">
-                            <li><Link href="#products" className="hover:text-white transition-colors">{t.nav.shop}</Link></li>
+                            <li><Link href="#shop" className="hover:text-white transition-colors">{t.nav.shop}</Link></li>
                             <li><Link href="#science" className="hover:text-white transition-colors">{t.nav.science}</Link></li>
                             <li><Link href="#philosophy" className="hover:text-white transition-colors">{t.nav.philosophy}</Link></li>
                             <li><Link href="#contact" className="hover:text-white transition-colors">{t.nav.contact}</Link></li>
@@ -117,16 +152,30 @@ const Footer = () => {
                         <p className="text-sm text-alabaster/60 font-light leading-relaxed">
                             {t.footer.newsletter_desc}
                         </p>
-                        <div className="space-y-3">
+                        <form onSubmit={handleNewsletterSubmit} className="space-y-3">
                             <Input
+                                required
                                 type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 placeholder="..."
                                 className="bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-[#DE9D9D] h-12 rounded-xl"
                             />
-                            <Button className="w-full bg-[#DE9D9D] hover:bg-[#cf8c8c] text-white border-none h-12 rounded-xl transition-all duration-300 font-medium tracking-widest text-xs uppercase">
-                                {t.footer.subscribe}
+                            <Button
+                                disabled={isSubmitting}
+                                type="submit"
+                                className="w-full bg-[#DE9D9D] hover:bg-[#cf8c8c] text-white border-none h-12 rounded-xl transition-all duration-300 font-medium tracking-widest text-xs uppercase flex items-center justify-center gap-2"
+                            >
+                                {isSubmitting ? (
+                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    <>
+                                        {t.footer.subscribe}
+                                        <Send size={12} className="opacity-50" />
+                                    </>
+                                )}
                             </Button>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -158,4 +207,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

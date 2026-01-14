@@ -35,10 +35,22 @@ const Navbar = () => {
     }, [isMobileMenuOpen]);
 
     useEffect(() => {
+        let ticking = false;
+
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    setIsScrolled(window.scrollY > 20);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         };
-        window.addEventListener("scroll", handleScroll);
+
+        // Check initial scroll position
+        handleScroll();
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
 
         // Active section detection using IntersectionObserver
         const sections = ["products", "ritual", "science", "ingredients", "philosophy", "sustainability", "faq", "contact"];
@@ -111,7 +123,9 @@ const Navbar = () => {
     return (
         <>
             <nav
-                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+                className={`fixed top-0 left-0 right-0 z-[100] transition-[background-color,padding,box-shadow,backdrop-filter] duration-300 ease-in-out ${isScrolled || isMobileMenuOpen
+                    ? "bg-white/95 backdrop-blur-lg shadow-sm py-3"
+                    : "bg-white/0 py-6"
                     }`}
             >
                 <div className={`container mx-auto px-6 flex items-center justify-between transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}>

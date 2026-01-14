@@ -53,10 +53,7 @@ const ProductShowcase = () => {
                     key={product.id}
                     className={`py-12 md:py-32 relative noise-overlay min-h-fit md:min-h-[800px] flex flex-col items-center border-b border-charcoal/5 last:border-0 ${product.bgClass}`}
                 >
-                    {/* Ambient Dynamic Background */}
-                    <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-                        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] blur-[160px] rounded-full ${product.glow}`} />
-                    </div>
+                    {/* Ambient Background Removed for Performance */}
 
 
                     {/* Cinematic Stage */}
@@ -70,32 +67,13 @@ const ProductShowcase = () => {
                         >
                             {/* 3D Product Canvas - Hidden on Mobile */}
                             <div className={`relative hidden lg:flex items-center justify-center order-2 ${product.order}`}>
-                                {/* Premium Plinth */}
-                                <div className="absolute inset-4 md:inset-0 glass-premium rounded-[4rem] -z-10 shadow-[0_40px_100px_rgba(0,0,0,0.08)] transform rotate-3" />
-
-                                {/* Architectural Accents - Replacing "bad" dots */}
-                                <div className="absolute inset-0 pointer-events-none overflow-visible">
-                                    <motion.div
-                                        animate={{ y: [0, -25, 0], x: [0, 15, 0], rotate: [12, 25, 12] }}
-                                        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                                        className="absolute -top-[10%] -left-[10%] w-24 h-24 rounded-2xl border border-gold-start/15 glass-premium backdrop-blur-sm hidden lg:block"
-                                    >
-                                        <div className="absolute inset-2 border border-gold-start/10 rounded-xl bg-gradient-to-br from-white/10 to-transparent" />
-                                    </motion.div>
-
-                                    <motion.div
-                                        animate={{ y: [0, 20, 0], x: [0, -20, 0], rotate: [-5, -15, -5] }}
-                                        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                        className="absolute -bottom-[15%] -right-[10%] w-32 h-32 rounded-full border border-gold-start/10 glass-premium backdrop-blur-md hidden lg:block"
-                                    >
-                                        <div className="absolute inset-4 border border-gold-start/5 rounded-full bg-gradient-to-tr from-white/5 to-transparent" />
-                                    </motion.div>
-                                </div>
+                                {/* Simplified Stage Background */}
+                                <div className="absolute inset-4 md:inset-0 bg-alabaster/40 rounded-[4rem] -z-10 border border-charcoal/5" />
 
                                 <motion.div
-                                    whileHover={{ scale: 1.04, rotate: -2, y: -10 }}
+                                    whileHover={{ scale: 1.02, rotate: -1, y: -5 }}
                                     transition={{ duration: 0.6, ease: "easeOut" }}
-                                    className="relative z-10 cursor-pointer"
+                                    className="relative z-10 cursor-pointer will-change-transform"
                                     onClick={() => window.location.href = `/shop/${product.slug}`}
                                 >
                                     <Image
@@ -107,13 +85,13 @@ const ProductShowcase = () => {
                                         priority={idx === 0}
                                     />
 
-                                    {/* Signature Purity Badge */}
+                                    {/* Simplified Purity Badge */}
                                     <motion.div
                                         initial={{ opacity: 0, scale: 0.8 }}
                                         whileInView={{ opacity: 1, scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.6, type: "spring" }}
-                                        className="absolute -top-4 -right-4 md:-right-12 glass-premium px-6 py-4 rounded-3xl border-gold-start/20 shadow-2xl hidden md:flex flex-col items-center gap-1"
+                                        className="absolute -top-4 -right-4 md:-right-12 bg-white px-6 py-4 rounded-3xl border border-gold-start/20 shadow-lg hidden md:flex flex-col items-center gap-1"
                                     >
                                         <span className="text-xs font-bold tracking-[0.5em] uppercase text-gold-end italic">{t.common.purity}</span>
                                         <span className="text-sm font-serif font-bold text-charcoal">99.8%</span>
@@ -163,9 +141,9 @@ const ProductShowcase = () => {
                                     </motion.p>
                                 </div>
 
-                                <div className="flex flex-col items-start lg:items-start gap-4 pt-2">
-                                    {/* Price Block - Moved above buttons for better visibility */}
-                                    <div className="flex flex-col items-start gap-3">
+                                <div className="flex flex-col items-start lg:items-start gap-10 pt-2">
+                                    {/* Price Block - Moved higher and increased gap */}
+                                    <div className="flex flex-col items-start gap-4 mb-4">
                                         <div className="flex items-baseline gap-4">
                                             <span className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-charcoal">{product.price}</span>
                                             <span className="text-xl md:text-2xl text-charcoal/30 line-through decoration-gold-end/30">

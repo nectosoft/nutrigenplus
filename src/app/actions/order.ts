@@ -49,42 +49,47 @@ export async function submitOrder(orderData: Omit<OrderData, 'id' | 'orderNumber
         // --- 1. PRIMARY STORAGE: DATABASE ---
         let dbSyncSuccess = false;
         try {
-            await (prisma.order as any).create({
-                data: {
-                    orderNumber: newOrder.orderNumber,
-                    fullName: newOrder.fullName,
-                    email: newOrder.email,
-                    phone: newOrder.phone,
-                    city: newOrder.city,
-                    address: newOrder.address,
-                    postalCode: newOrder.postalCode,
-                    country: newOrder.country,
-                    shippingProvider: newOrder.shippingProvider,
-                    deliveryType: newOrder.deliveryType,
-                    paymentMethod: newOrder.paymentMethod,
-                    total: newOrder.total,
-                    shippingCost: newOrder.shippingCost,
-                    cityId: newOrder.cityId,
-                    cityName: newOrder.cityName,
-                    officeId: newOrder.officeId,
-                    officeName: newOrder.officeName,
-                    status: "pending",
-                    items: {
-                        create: newOrder.items.map(item => ({
-                            productId: item.id,
-                            name: item.name,
-                            quantity: item.quantity,
-                            price: item.numericPrice,
-                            image: item.image
-                        }))
+            await prisma.$transaction(async (tx) => {
+                // Create Order
+                return await (tx.order as any).create({
+                    data: {
+                        orderNumber: newOrder.orderNumber,
+                        fullName: newOrder.fullName,
+                        email: newOrder.email,
+                        phone: newOrder.phone,
+                        city: newOrder.city,
+                        address: newOrder.address,
+                        postalCode: newOrder.postalCode,
+                        country: newOrder.country,
+                        shippingProvider: newOrder.shippingProvider,
+                        deliveryType: newOrder.deliveryType,
+                        paymentMethod: newOrder.paymentMethod,
+                        total: newOrder.total,
+                        shippingCost: newOrder.shippingCost,
+                        cityId: newOrder.cityId,
+                        cityName: newOrder.cityName,
+                        officeId: newOrder.officeId,
+                        officeName: newOrder.officeName,
+                        status: "pending",
+                        items: {
+                            create: newOrder.items.map(item => ({
+                                productId: item.id,
+                                name: item.name,
+                                quantity: item.quantity,
+                                price: item.numericPrice,
+                                image: item.image
+                            }))
+                        }
                     }
-                }
+                });
             });
-            console.log("DB SYNC SUCCESSFUL:", orderNumber);
+            console.log("DB TRANSACTION SUCCESSFUL:", orderNumber);
             dbSyncSuccess = true;
-        } catch (dbError) {
-            console.error("DB SYNC FAILED:", dbError);
-            // If DB fails and we are not on Vercel, we might still want to try file storage
+        } catch (dbError: any) {
+            console.error("DB TRANSACTION FAILED:", dbError);
+            if (dbError.message?.includes("Insufficient stock")) {
+                throw dbError;
+            }
         }
 
         // --- 2. SECONDARY STORAGE: FILE (Only if writable/local) ---
@@ -113,7 +118,21 @@ export async function submitOrder(orderData: Omit<OrderData, 'id' | 'orderNumber
             }
         }
 
-        // --- 3. RETURN RESULT ---
+        // --- 3. TRIGGER NOTIFICATIONS ---
+        if (dbSyncSuccess || process.env.NODE_ENV === 'development') {
+            // We fire and forget the email to not block the response, 
+            // but we can also await it if we want to be sure.
+            // For now, let's await to ensure we catch errors in logs.
+            try {
+                const { sendOrderConfirmationEmail } = await import("./email");
+                await sendOrderConfirmationEmail(newOrder);
+                console.log("CONFIRMATION EMAIL SENT:", orderNumber);
+            } catch (emailError) {
+                console.error("FAILED TO SEND CONFIRMATION EMAIL:", emailError);
+            }
+        }
+
+        // --- 4. RETURN RESULT ---
         if (newOrder.paymentMethod === 'cod') {
             return { success: true, method: 'cod', orderId: newOrder.id };
         } else {
@@ -170,7 +189,7 @@ export async function getOrders(): Promise<OrderData[]> {
                 }));
             }
         } catch (dbError) {
-            console.error("Failed to fetch from DB:", dbError);
+            console.error("Failed to fetch from DB, falling back to file:", dbError);
         }
 
         // --- 2. Fallback to file for Local Dev ---

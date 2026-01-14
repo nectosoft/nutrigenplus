@@ -1,0 +1,34 @@
+[
+  {
+    "fullName": "Dani Marinov",
+    "email": "danimarinov777@gmail.com",
+    "phone": "028542742",
+    "country": "Bulgaria",
+    "city": "Плевен",
+    "postalCode": "5800",
+    "address": " Плевен Индустриална зона ул. Кара Колю №5А Кръговото до завод Мизия",
+    "shippingProvider": "econt",
+    "deliveryType": "office",
+    "paymentMethod": "cod",
+    "cityId": "32",
+    "cityName": "Плевен",
+    "officeId": "992",
+    "officeName": "Плевен",
+    "shippingCost": 5.5,
+    "items": [
+      {
+        "id": "bioactive-collagen",
+        "name": "Биоактивни колагенови пептиди: Пълна подкрепа за тялото",
+        "price": "35,99 €",
+        "numericPrice": 35.99,
+        "image": "/product-bovine-transparent.png",
+        "quantity": 1
+      }
+    ],
+    "total": 35.99,
+    "id": "ORD-1768407178218-87B7",
+    "orderNumber": "ORD-1768407178218-87B7",
+    "status": "pending",
+    "createdAt": "2026-01-14T16:12:58.218Z"
+  }
+]

@@ -81,6 +81,41 @@ export const translations = {
                 beef_collagen: "Pure Beef Collagen",
                 soluble: "Easily Soluble",
             },
+            usp: {
+                standard: "The Standard",
+                title: "Pure Collagen",
+                vs: "vs. Industry Blends",
+                description: "Most commercial brands dilute their formula with synthetic fillers to reduce costs. At NutriGen+, we believe in absolute transparency and molecular purity.",
+                medical_grade: "Medical Grade",
+                medical_desc: "Tested for heavy metals and purity in independent labs.",
+                rapid_uptake: "Rapid Uptake",
+                rapid_desc: "Micro-peptides designed for immediate cellular signal.",
+                purity_level: "Purity Level",
+                additives: "Additives",
+                bioavailability: "Bioavailability",
+                mixing: "Mixing",
+                pure: "Pure",
+                blend: "Blend",
+                quote: '"We don\'t hide behind \'proprietary blends\'. Every milligram is accounted for."',
+                items: {
+                    purity: {
+                        pure: "99.8% Bioactive",
+                        blend: "40-60% Filler"
+                    },
+                    additives: {
+                        pure: "Zero (Pure)",
+                        blend: "Flavors & Sweeteners"
+                    },
+                    bio: {
+                        pure: "2000 Dalton Peptides",
+                        blend: "Varies (Unknown)"
+                    },
+                    mixing: {
+                        pure: "Instant Dissolve",
+                        blend: "Clumping Possible"
+                    }
+                }
+            },
         },
         philosophy: {
             subtitle: "OUR PHILOSOPHY",
@@ -170,7 +205,7 @@ export const translations = {
             purity: "Absolute Purity",
             items: {
                 bioactive: {
-                    name: "Bioactive Collagen Peptides: Total Body Support",
+                    name: "6in1 Bioactive Collagen Peptides",
                     slug: "bioactive-collagen",
                     info: "Bovine | Bioactive Peptides",
                     price: "35.99 €",
@@ -222,7 +257,7 @@ export const translations = {
                     }
                 },
                 fish: {
-                    name: "Premium Fish Collagen Peptides: Revitalize Your Natural Glow",
+                    name: "Premium Fish Collagen",
                     slug: "fish-collagen",
                     info: "Pure Marine Source | Fast Absorption",
                     price: "45.99 €",
@@ -395,7 +430,6 @@ export const translations = {
             description: "Reach out for personalized guidance on your longevity ritual. Our experts are here to assist with scientific inquiries or order support.",
             name: "Name",
             email: "Email",
-            message: "Message",
             send: "Send Message",
             success: "Message sent. Our team will contact you shortly.",
             error_generic: "Something went wrong. Please try again.",
@@ -543,6 +577,94 @@ export const translations = {
             cod: "Cash on Delivery",
             export_csv: "Export CSV",
             unit_px: "Price",
+            inventory: "Inventory",
+            stock_levels: "Stock Levels",
+            adjust_stock: "Adjust Stock",
+            low_stock: "Low Stock",
+            invoice_archive: "Invoice Archive",
+            generate_invoice: "Generate Invoice",
+            search_orders: "Search Orders...",
+            download: "Download",
+            sku: "SKU",
+            actions: "Actions",
+        },
+        legal: {
+            privacy: {
+                title: "Privacy Policy",
+                last_updated: "Last Updated: January 14, 2026",
+                content: [
+                    {
+                        heading: "1. Data Controller",
+                        text: "The data controller responsible for your personal information is NutriGen+ Europe Ltd, EIK: 207123456, with registered office in Sofia, Bulgaria. We are committed to protecting your privacy and ensuring your personal data is handled in accordance with GDPR and Bulgarian data protection laws."
+                    },
+                    {
+                        heading: "2. Information We Collect",
+                        text: "We collect information necessary to provide our premium services and fulfill your orders:",
+                        items: [
+                            "Identity Data: Full name, phone number, and email address.",
+                            "Transaction Data: Details about payments and products purchased. Note: Payment card details are processed securely by Stripe and are not stored on our servers.",
+                            "Logistics Data: Delivery address, city, postal code, and preferred shipping provider (Speedy/Econt)."
+                        ]
+                    },
+                    {
+                        heading: "3. Legal Basis and Purpose",
+                        text: "We process your data based on the following:",
+                        items: [
+                            "Contractual necessity: To process and deliver your orders.",
+                            "Legal obligation: For tax and accounting purposes (invoicing).",
+                            "Legitimate interest: To improve our website and provide customer support.",
+                            "Consent: For sending newsletter updates, if you have opted in."
+                        ]
+                    },
+                    {
+                        heading: "4. Data Sharing and Retention",
+                        text: "Your data is shared only with essential partners: Stripe (payments) and Speedy/Econt (logistics). We retain your data for as long as necessary to fulfill the purposes of collection and as required by law (e.g., 10 years for accounting records)."
+                    },
+                    {
+                        heading: "5. Your Rights",
+                        text: "Under GDPR, you have the right to access, rectify, or erase your personal data, the right to restrict processing, and the right to data portability. To exercise these rights, please contact us at danimarinov777@gmail.com."
+                    }
+                ]
+            },
+            terms: {
+                title: "Terms of Service",
+                last_updated: "Last Updated: January 14, 2026",
+                content: [
+                    {
+                        heading: "1. General Provisions",
+                        text: "These Terms of Service govern the use of the NutriGen+ website and the purchase of our products. By accessing our site, you agree to these terms in full."
+                    },
+                    {
+                        heading: "2. Orders and Payments",
+                        text: "All orders are subject to acceptance and availability. Prices are listed in EUR/BGN and include VAT where applicable. Payments can be made via credit/debit card (Stripe) or Cash on Delivery (COD)."
+                    },
+                    {
+                        heading: "3. Delivery and Risk",
+                        text: "Delivery is processed via Speedy and Econt. Risk of loss passes to you upon delivery of the products. We aim for rapid delivery, but estimated times are not guaranteed."
+                    },
+                    {
+                        heading: "4. Right of Withdrawal",
+                        text: "In accordance with EU consumer protection laws, you have the right to withdraw from your purchase within 14 days of receiving the goods without giving a reason. To be eligible for a return, the product must be unopened, in its original premium packaging, and in the same condition that you received it.",
+                        items: [
+                            "You must inform us of your decision to withdraw via email.",
+                            "You are responsible for the direct cost of returning the goods.",
+                            "We will refund the full amount within 14 days of receiving the returned products."
+                        ]
+                    },
+                    {
+                        heading: "5. Warranty and Liability",
+                        text: "We provide products of the highest molecular purity. Our liability is limited to the purchase price of the product. These terms are governed by the laws of the Republic of Bulgaria."
+                    },
+                    {
+                        heading: "6. Cookies Policy",
+                        text: "We use essential cookies to manage your molecular shopping ritual. These include session cookies for the cart and security tokens. By continuing to use our site, you consent to these functional cookies which ensure a smooth premium experience."
+                    },
+                    {
+                        heading: "7. Intellectual Property",
+                        text: "All content on this site, including the NutriGen+ logo, molecular designs, and brand concepts, is the exclusive property of NutriGen+ Europe Ltd. Unauthorized use or reproduction is strictly prohibited."
+                    }
+                ]
+            }
         },
     },
     bg: {
@@ -626,6 +748,41 @@ export const translations = {
                 amino: "Богат на аминокиселини",
                 beef_collagen: "Чист телешки колаген",
                 soluble: "Лесно разтворим",
+            },
+            usp: {
+                standard: "Стандартът",
+                title: "Чист колаген",
+                vs: "срещу Индустриални блендове",
+                description: "Повечето търговски марки разреждат своята формула със синтетични пълнители, за да намалят разходите. В NutriGen+ вярваме в абсолютната прозрачност и молекулярната чистота.",
+                medical_grade: "Медицински клас",
+                medical_desc: "Тестван за тежки метали и чистота в независими лаборатории.",
+                rapid_uptake: "Бързо усвояване",
+                rapid_desc: "Микро-пептиди, проектирани за незабавен клетъчен сигнал.",
+                purity_level: "Ниво на чистота",
+                additives: "Добавки",
+                bioavailability: "Бионаличност",
+                mixing: "Разтворимост",
+                pure: "Чист",
+                blend: "Бленд",
+                quote: '„Ние не се крием зад „патентовани блендове“. Всеки милиграм е отчетен.“',
+                items: {
+                    purity: {
+                        pure: "99.8% Биоактивен",
+                        blend: "40-60% Пълнител"
+                    },
+                    additives: {
+                        pure: "Нула (Чист)",
+                        blend: "Вкусове и подсладители"
+                    },
+                    bio: {
+                        pure: "2000 Далтона пептиди",
+                        blend: "Варира (Неизвестно)"
+                    },
+                    mixing: {
+                        pure: "Мигновено разтваряне",
+                        blend: "Възможно е образуване на бучки"
+                    }
+                }
             },
         },
         philosophy: {
@@ -716,7 +873,7 @@ export const translations = {
             purity: "Абсолютна чистота",
             items: {
                 bioactive: {
-                    name: "Биоактивни колагенови пептиди: Пълна подкрепа за тялото",
+                    name: "6in1 Биоактивни колагенови пептиди",
                     slug: "bioactive-collagen",
                     info: "Телешки | Биоактивни пептиди",
                     price: "35,99 €",
@@ -1089,6 +1246,94 @@ export const translations = {
             cod: "Наложен платеж",
             export_csv: "Експорт CSV",
             unit_px: "Цена",
+            inventory: "Инвентар",
+            stock_levels: "Нива на наличност",
+            adjust_stock: "Коригирай наличност",
+            low_stock: "Ниска наличност",
+            invoice_archive: "Архив на фактури",
+            generate_invoice: "Генерирай фактура",
+            search_orders: "Търси поръчки...",
+            download: "Изтегли",
+            sku: "SKU",
+            actions: "Actions",
+        },
+        legal: {
+            privacy: {
+                title: "Политика за поверителност",
+                last_updated: "Последна актуализация: 14 януари 2026",
+                content: [
+                    {
+                        heading: "1. Администратор на данни",
+                        text: "Администраторът на лични данни е NutriGen+ Europe Ltd, ЕИК: 207123456, със седалище в гр. София, България. Ние се ангажираме да защитаваме Вашата поверителност и да гарантираме, че личните Ви данни се обработват в съответствие с GDPR и българското законодателство."
+                    },
+                    {
+                        heading: "2. Информация, която събираме",
+                        text: "Събираме информация, необходима за предоставяне на нашите услуги и изпълнение на Вашите поръчки:",
+                        items: [
+                            "Данни за идентичност: Три имена, телефонен номер и имейл адрес.",
+                            "Трансакционни данни: Детайли за плащания и закупени продукти. Плащанията с карти се обработват сигурно чрез Stripe и не се съхраняват на нашите сървъри.",
+                            "Логистични данни: Адрес за доставка, град, пощенски код и предпочитан доставчик (Speedy/Econt)."
+                        ]
+                    },
+                    {
+                        heading: "3. Правно основание и цели",
+                        text: "Обработваме Вашите данни въз основа на:",
+                        items: [
+                            "Договорна необходимост: За обработка и доставка на Вашите поръчки.",
+                            "Законово задължение: За данъчни и счетоводни цели (издаване на фактури).",
+                            "Легитимен интерес: За подобряване на уебсайта и клиентска поддръжка.",
+                            "Съгласие: За изпращане на бюлетин, ако сте се абонирали."
+                        ]
+                    },
+                    {
+                        heading: "4. Споделяне и съхранение на данни",
+                        text: "Вашите данни се споделят само с основни партньори: Stripe (плащания) и Speedy/Econt (логистика). Съхраняваме данните Ви толкова дълго, колкото е необходимо за целите на събирането им и съгласно закона (напр. 10 години за счетоводни документи)."
+                    },
+                    {
+                        heading: "5. Вашите права",
+                        text: "Съгласно GDPR имате право на достъп, коригиране или изтриване на Вашитие данни, право на ограничаване на обработката и право на преносимост. За да упражните тези права, свържете се с нас на danimarinov777@gmail.com."
+                    }
+                ]
+            },
+            terms: {
+                title: "Общи условия",
+                last_updated: "Последна актуализация: 14 януари 2026",
+                content: [
+                    {
+                        heading: "1. Общи разпоредби",
+                        text: "Тези Общи условия уреждат използването на уебсайта NutriGen+ и покупката на нашите продукти. С достъпа до нашия сайт Вие се съгласявате с тези условия в тяхната цялост."
+                    },
+                    {
+                        heading: "2. Поръчки и плащания",
+                        text: "Всички поръчки подлежат на приемане и наличност. Цените са в EUR/BGN и включват ДДС където е приложимо. Плащанията могат да бъдат извършени чрез кредитна/дебитна карта (Stripe) или наложен платеж (COD)."
+                    },
+                    {
+                        heading: "3. Доставка и риск",
+                        text: "Доставката се извършва чрез Speedy и Econt. Рискът от загуба преминава върху Вас при доставка на продуктите. Стремим се към бърза доставка, но прогнозираните срокове не са гарантирани."
+                    },
+                    {
+                        heading: "4. Право на отказ",
+                        text: "Съгласно законите за защита на потребителите в ЕС, имате право да се откажете от покупката си в рамките на 14 дни от получаване на стоката, без да посочвате причина. Продуктът трябва да бъде неотворен, в оригиналната си премиум опаковка и в същия вид, в който е получен.",
+                        items: [
+                            "Трябва да ни информирате за решението си чрез имейл.",
+                            "Вие поемате директните разходи за връщане на стоките.",
+                            "Ще възстановим сумата в рамките на 14 дни от получаване на върнатите продукти."
+                        ]
+                    },
+                    {
+                        heading: "5. Гаранция и отговорност",
+                        text: "Ние предоставяме продукти с най-висока молекулярна чистота. Нашата отговорност е ограничена до продажната цена на продукта. Тези условия се уреждат от законите на Република България."
+                    },
+                    {
+                        heading: "6. Политика за бисквитки",
+                        text: "Използваме основни „бисквитки“ за управление на Вашето пазаруване. Те включват сесийни бисквитки за количката и маркери за сигурност. Използвайки сайта ни, Вие се съгласявате с тези функционални бисквитки."
+                    },
+                    {
+                        heading: "7. Интелектуална собственост",
+                        text: "Цялото съдържание на този сайт, включително логото на NutriGen+, молекулярният дизайн и бранд концепциите, са изключителна собственост на NutriGen+ Europe Ltd. Неразрешеното използване е строго забранено."
+                    }
+                ]
+            }
         },
     },
 };

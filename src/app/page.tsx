@@ -1,7 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import ProductShowcase from "@/components/sections/ProductShowcase";
-import QualityShowcase from "@/components/sections/QualityShowcase";
+import PureCollagenUSP from "@/components/sections/PureCollagenUSP";
 import BenefitsGrid from "@/components/sections/BenefitsGrid";
 // import ScienceSection from "@/components/sections/ScienceSection";
 import RitualSection from "@/components/sections/RitualSection";
@@ -18,8 +18,8 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <QualityShowcase />
       <ProductShowcase />
+      <PureCollagenUSP />
       <RitualSection />
       <BenefitsGrid />
       {/* <ScienceSection /> */}
